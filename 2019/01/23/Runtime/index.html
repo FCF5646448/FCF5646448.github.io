@@ -79,16 +79,21 @@
 
 
 
-<meta name="description" content="记录成长，记录生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="FCF Home">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="OC与RuntimeOC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。 OC是一门动态语言，有三个表现特征：动态类型、动态绑定、动态加载。 OC对消息的处理需要先确定实际执行的方法然后在跳转过去执">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Runtime">
+<meta property="og:url" content="http://yoursite.com/2019/01/23/Runtime/index.html">
 <meta property="og:site_name" content="FCF Home">
-<meta property="og:description" content="记录成长，记录生活">
+<meta property="og:description" content="OC与RuntimeOC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。 OC是一门动态语言，有三个表现特征：动态类型、动态绑定、动态加载。 OC对消息的处理需要先确定实际执行的方法然后在跳转过去执">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/01/23/Runtime/runtimexmind.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/23/Runtime/runtimeObjc.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/23/Runtime/methodforward.png">
+<meta property="og:updated_time" content="2019-01-23T12:24:24.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FCF Home">
-<meta name="twitter:description" content="记录成长，记录生活">
+<meta name="twitter:title" content="Runtime">
+<meta name="twitter:description" content="OC与RuntimeOC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。 OC是一门动态语言，有三个表现特征：动态类型、动态绑定、动态加载。 OC对消息的处理需要先确定实际执行的方法然后在跳转过去执">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/23/Runtime/runtimexmind.png">
 
 
 
@@ -118,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/23/Runtime/">
 
 
 
 
 
-  <title>FCF Home</title>
+  <title>Runtime | FCF Home</title>
   
 
 
@@ -143,8 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -237,9 +241,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -269,9 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/23/Runtime/" itemprop="url">Runtime</a></h1>
+          <h1 class="post-title" itemprop="name headline">Runtime</h1>
         
 
         <div class="post-meta">
@@ -321,9 +323,7 @@
       
 
       
-        
-          
-            <p><img src="/2019/01/23/Runtime/runtimexmind.png" alt="img"></p>
+        <p><img src="/2019/01/23/Runtime/runtimexmind.png" alt="img"></p>
 <h4 id="OC与Runtime"><a href="#OC与Runtime" class="headerlink" title="OC与Runtime"></a>OC与Runtime</h4><p>OC是一个面向对象的语言，面向对象是指<strong>把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元</strong>，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。</p>
 <p>OC是一门动态语言，有三个表现特征：动态类型、动态绑定、动态加载。</p>
 <p>OC对消息的<strong>处理需要先确定实际执行的方法然后在跳转过去执行</strong>，而在编译期间是无法确定实际执行的目标函数，只有在运行期间才能得到最终确定。OC派发消息的过程是通过向目标target对象发送一个选择子Selector，而消息本身实际上只是一个字符串，比如向一个Person对象，发送一个eat的消息，实际上只是发送了一个字符串为“eat”的Selector，即使Person没有实现eat方法，编译仍然可以通过，但是运行期间会因找不到而抛出异常。</p>
@@ -423,8 +423,6 @@
 </ul>
 <p>答案：都能运行正常。首先，class方法返回的是一个类对象，即元类的实例。然后obj指针指向类对象的首地址。这就可以正常调用了。而2、3的区别就是init方法，init初始化方法，alloc只分配了空间。</p>
 
-          
-        
       
     </div>
     
@@ -441,168 +439,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/FLogTools/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FengCaifan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FCF Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/03/FLogTools/" itemprop="url">FLogTools</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-03T18:50:19+08:00">
-                2018-12-03
-              </time>
+              <a href="/2018/12/03/FLogTools/" rel="next" title="FLogTools">
+                <i class="fa fa-chevron-left"></i> FLogTools
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h3 id="测试工具集-FDebugTools"><a href="#测试工具集-FDebugTools" class="headerlink" title="测试工具集 FDebugTools"></a>测试工具集 FDebugTools</h3><p>打算集成一个开发测试小工具。包含日志打印、cook、IP、网络状态能测试基础信息</p>
-<h4 id="1、Log-Level"><a href="#1、Log-Level" class="headerlink" title="1、Log Level"></a>1、Log Level</h4><p>这个小工具是为了给测试或者开发人员在测试环境对某些bug进行实时反馈的小工具。比如某个接口挂了，那我们在没有联调xcode的情况下，是无知道具体的接口及错误信息。</p>
-<ul>
-<li>目标：写一个类似小程序在调试模式下的实时控制台信息。</li>
-<li>功能：<ul>
-<li>1、实时显示当前Log；</li>
-<li>2、展示基本的配置信息：cookie、IP、网络状态等</li>
-</ul>
-</li>
-</ul>
-<p>来看下当前Demo的效果图:</p>
-<p><img src="/2018/12/03/FLogTools/loglevel.jpeg" alt=""></p>
-<h5 id="01、FLogConsoleManager-基础打印类"><a href="#01、FLogConsoleManager-基础打印类" class="headerlink" title="01、FLogConsoleManager 基础打印类"></a>01、FLogConsoleManager 基础打印类</h5><h6 id="首先对于系统的NSLog，它是一个很耗性能的方法NSLog耗性能原因，所以在release模式下，是不应该使用的，而小工具也是无需在release模式下展示的。所以使用"><a href="#首先对于系统的NSLog，它是一个很耗性能的方法NSLog耗性能原因，所以在release模式下，是不应该使用的，而小工具也是无需在release模式下展示的。所以使用" class="headerlink" title="首先对于系统的NSLog，它是一个很耗性能的方法NSLog耗性能原因，所以在release模式下，是不应该使用的，而小工具也是无需在release模式下展示的。所以使用"></a>首先对于系统的NSLog，它是一个很耗性能的方法<a href="http://blog.sunnyxx.com/2014/04/22/objc_dig_nslog/" target="_blank" rel="noopener">NSLog耗性能原因</a>，所以在release模式下，是不应该使用的，而小工具也是无需在release模式下展示的。所以使用</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#ifdef DEBUG</span><br><span class="line">#define FLog(...) printf(&quot;xxx&quot;);</span><br><span class="line">#else </span><br><span class="line">#define FLog(...)</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
-<h6 id="宏的使用与说明"><a href="#宏的使用与说明" class="headerlink" title="宏的使用与说明"></a>宏的使用与说明</h6><p>知识点：</p>
-<ul>
-<li><code>__VA_ARGS__</code>  可变参数的宏，宏前面加上##的作用在于，当可变参数的个数为0时，这里的##起到把前面多余的”,”去掉,否则会编译出错。</li>
-<li><code>__FILE__</code>  宏在预编译时会替换成当前的源文件名</li>
-<li><code>__LINE__</code> 宏在预编译时会替换成当前的行号</li>
-<li><code>__FUNCTION__</code>  宏在预编译时会替换成当前的函数名称</li>
-<li><code>format</code>  能告诉编译器，代码在处理printf的内容</li>
-<li><code>NS_FORMAT_FUNCTION(1,2)</code>  参数列表，第1位是格式化字符串，从第二位参数开始计算参数列表<br>所以，改进一下上面的Log</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define FLog(FORMAT, ...) fprintf(stderr,&quot;\nFunction:%s Line:%d Content:%s\n&quot;, __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String])</span><br></pre></td></tr></table></figure>
-<h6 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h6><p>一个打印文件、函数、行数、参数的宏<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#ifdef DEBUG</span><br><span class="line">#define FLog(frmt, ...) Log_objc(frmt, ##__VA_ARGS__)</span><br><span class="line">#else</span><br><span class="line">#define FLog(frmt, ...)</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#define Log_objc(frmt, ...)     \</span><br><span class="line">Log_func(__PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)</span><br><span class="line"></span><br><span class="line">#define Log_func(fnct,frmt,...)     \</span><br><span class="line">do&#123; if(1 &amp; 1) Log(__FILE__, fnct, frmt, ##__VA_ARGS__); &#125; while(0)</span><br><span class="line"></span><br><span class="line">#define Log(file,fnct,frmt, ...)     \</span><br><span class="line">[[FLogConsoleManager shareInstance] logFile : file     \</span><br><span class="line">func : fnct     \</span><br><span class="line">line : __LINE__     \</span><br><span class="line">format : (frmt), ##__VA_ARGS__]</span><br></pre></td></tr></table></figure></p>
-<h5 id="02、文件管理类FLogFileManager"><a href="#02、文件管理类FLogFileManager" class="headerlink" title="02、文件管理类FLogFileManager"></a>02、文件管理类FLogFileManager</h5><h6 id="文件安全性保证应该是多读单写的性质。另外需要了解的知识点有："><a href="#文件安全性保证应该是多读单写的性质。另外需要了解的知识点有：" class="headerlink" title="文件安全性保证应该是多读单写的性质。另外需要了解的知识点有："></a>文件安全性保证应该是多读单写的性质。另外需要了解的知识点有：</h6><p>知识点：</p>
-<ul>
-<li>FileManager是对文件的操作，比如创建、移动、删除等</li>
-<li>FileHandle是对文件内容的操作，比如大小、追加字节等</li>
-<li>dispatch_barrier_async 虽然是异步执行，但是会保证之前的任务会先于当前任务执行，之后任务会后于当前任务执行。所以它只在并发队列中有效，其他队列和dispatch_async一样。<a href="https://www.jianshu.com/p/ff444d664e51" target="_blank" rel="noopener">简书</a></li>
-</ul>
-<p>所以write的代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">__block BOOL isSuccess;</span><br><span class="line">    dispatch_barrier_sync(_queue, ^&#123;</span><br><span class="line">        if ([self isExitsAtPath:path])&#123;</span><br><span class="line">            NSFileHandle * fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:path];</span><br><span class="line">            [fileHandle seekToEndOfFile]; //将字节跳到文件末尾</span><br><span class="line">            [fileHandle writeData:[((NSString *)content) dataUsingEncoding:NSUTF8StringEncoding]];</span><br><span class="line">            [fileHandle closeFile];</span><br><span class="line">            isSuccess = YES;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            //第一次写入文件</span><br><span class="line">            NSError * error;</span><br><span class="line">            isSuccess = [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&amp;error];</span><br><span class="line">            if (error) &#123;</span><br><span class="line">                NSLog(@&quot;%@&quot;, error.localizedDescription);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    return isSuccess;</span><br></pre></td></tr></table></figure>
-<h6 id="文件监听"><a href="#文件监听" class="headerlink" title="文件监听"></a>文件监听</h6><p>因为当level显示在窗口时需要实时显示日志的内容。而显示期间也有日志在不间断地写入到文件中，所以对文件内容变化的掌握能让level层永远显示最新的日志。<br>在当前demo中，有大概三种方式实现这个功能<br>1、在写入成功后发出通知，让level显示层主动调用读取日志的函数。<br>2、在level层写一个定时器，每隔一定时间进行日志的读取<br>3、使用GCD对文件内容进行监听，每当监听到内容变化时，发出信号<br>毫无疑问，最好的手法应该是第一种和第三种。这里为了学习一下新技能，所以使用第三种方法试一下。<br>知识点：<br>dispatch_source 事件源，可以捕捉系统底层事件发生。可以查看这位同学的<a href="https://www.jianshu.com/p/aeae7b73aee2" target="_blank" rel="noopener">简书</a>进行了解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">- (void)startMonitorFile &#123;</span><br><span class="line">    </span><br><span class="line">    NSURL *directoryURL = [NSURL URLWithString:[self path]];</span><br><span class="line">    int const fd =</span><br><span class="line">    open([[directoryURL path] fileSystemRepresentation], O_EVTONLY); //O_EVTONLY：仅为事件通知请求的描述符 notifications only */</span><br><span class="line">    if (fd &lt; 0) &#123;</span><br><span class="line">        NSLog(@&quot;Unable to open the path = %@&quot;, [directoryURL path]);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    dispatch_source_t source =</span><br><span class="line">    dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, fd,</span><br><span class="line">                           DISPATCH_VNODE_WRITE,</span><br><span class="line">                           DISPATCH_TARGET_QUEUE_DEFAULT); //创建事件源</span><br><span class="line">    __weak typeof(FLogFileManager *)weakself = self;</span><br><span class="line">    dispatch_source_set_event_handler(source, ^() &#123; //监听信号回调</span><br><span class="line">        __strong typeof(FLogFileManager *)strongSelf = weakself;</span><br><span class="line">        unsigned long const type = dispatch_source_get_data(source);</span><br><span class="line">        switch (type) &#123;</span><br><span class="line">            case DISPATCH_VNODE_WRITE: &#123;</span><br><span class="line">                NSLog(@&quot;目录内容改变!!!\n&quot;);</span><br><span class="line">                if (strongSelf.fileDidChanged)&#123;</span><br><span class="line">                    strongSelf.fileDidChanged();</span><br><span class="line">                &#125;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_source_set_cancel_handler(source, ^&#123;</span><br><span class="line">        close(fd);</span><br><span class="line">    &#125;);</span><br><span class="line">    self.source = source;</span><br><span class="line">    dispatch_resume(self.source);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="03、使用"><a href="#03、使用" class="headerlink" title="03、使用"></a>03、使用</h5><p>使用只要将FDebugTools文件夹导入就好，<br>日志打印直接使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FLog(@&quot;viewDidLoad&quot;);</span><br><span class="line">//或</span><br><span class="line">FLog(@&quot;%@&quot;,@&quot;viewWillAppear&quot;);</span><br></pre></td></tr></table></figure></p>
-<p>显示窗口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[FLogLevel shareInstance] minShow];</span><br></pre></td></tr></table></figure></p>
-<p>隐藏窗口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[FLogLevel shareInstance] hide];</span><br></pre></td></tr></table></figure></p>
-<p>OK，基本日志系统就告一段落了，后续持续更新优化。<br><a href="https://github.com/FCF5646448/FDebugTools" target="_blank" rel="noopener">代码github</a><br>如果您喜欢或者觉得有帮助请给个小❤️❤️吧！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -612,246 +470,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/10/iOS-CoreAnimation/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FengCaifan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FCF Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/10/iOS-CoreAnimation/" itemprop="url">iOS-CoreAnimation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-10T17:36:48+08:00">
-                2018-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>CoreAnimation: 不止于动画。动画只是CoreAnimation的冰山一角而已，UI的渲染也都是靠CoreAnimation。</p>
-<h5 id="1、图层-amp-视图"><a href="#1、图层-amp-视图" class="headerlink" title="1、图层&amp;视图"></a>1、图层&amp;视图</h5><p>图层 CALayer：只能做视图处理</p>
-<p>视图 UIView: 能够响应事件</p>
-<p>CALayer和UIView最大的不同是UILayer不处理用户交互。但它们是一种平行的层级关系，每一个视图UIView都含有一个UILayer，一个视图View可以添加多个Layer。苹果之所以这样设计是为了达到一种<strong>职责分离</strong>的效果。</p>
-<h5 id="2、寄宿图"><a href="#2、寄宿图" class="headerlink" title="2、寄宿图"></a>2、寄宿图</h5><p>CALayer有一个Any类型的contents属性。它可以直接给view添加一张图片，称之为<strong>寄宿图</strong></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whiteView.layer.contents = <span class="type">UIImage</span>(named: <span class="string">"snowman"</span>)?.cgImage <span class="comment">//设置content为图片</span></span><br></pre></td></tr></table></figure>
-<p>接下来设置寄宿图的各种属性样式</p>
-<ul>
-<li>mode样式：显示的样式跟UIView的mode一样的效果</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whiteView.layer.contentsGravity = <span class="type">CALayerContentsGravity</span>.resizeAspect <span class="comment">//等比拉伸</span></span><br></pre></td></tr></table></figure>
-<p>Scale属性：在mode为不拉伸的样式下（比如center），可以设置scale来拉伸，但是它是指一个每个像素绘制的点。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">whiteView.layer.contentsGravity = <span class="type">CALayerContentsGravity</span>.center</span><br><span class="line">whiteView.layer.contentsScale = <span class="number">0.1</span> <span class="comment">//大小放大10倍，像素会变得很模糊</span></span><br><span class="line">whiteView.layer.contentsScale = <span class="number">5</span>  <span class="comment">////大小缩小5倍，像素会变得很清晰</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>maskToBounds: 裁剪显示在图层之外的内容</li>
-<li>contentsRect: 裁剪图片，将整个图片分成0-1的区间。</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whiteView.layer.contentsRect = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">0.5</span>, height: <span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>contentsCenter: 设置拉伸区域，类似微信聊天的气泡图</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">whiteView.layer.contents = <span class="type">UIImage</span>(named: <span class="string">"99"</span>)?.cgImage <span class="comment">//设置content为图片</span></span><br><span class="line">whiteView.layer.contentsCenter = <span class="type">CGRect</span>(x: <span class="number">0.25</span>, y: <span class="number">0.25</span>, width: <span class="number">0.5</span>, height: <span class="number">0.5</span>) <span class="comment">//除了四角，拉取中间区域</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>custome Drawing: 自定义绘制，drawRect:</li>
-</ul>
-<p><strong>如果没有自定义绘制的任务就不要在子类中写一个空的drawRect方法</strong>会造成资源的浪费。</p>
-<p>在Controller中实现类似drawrect方法：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">blueLayer.delegate = <span class="keyword">self</span> <span class="comment">//实现代理</span></span><br><span class="line">blueLayer.display() <span class="comment">//需要显示调用</span></span><br></pre></td></tr></table></figure>
-<p>实现代理：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ViewController</span>:<span class="title">CALayerDelegate</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">(<span class="number">_</span> layer: CALayer, <span class="keyword">in</span> ctx: CGContext)</span></span> &#123;</span><br><span class="line">		ctx.setLineWidth(<span class="number">10.0</span>)</span><br><span class="line">		ctx.setStrokeColor(<span class="type">UIColor</span>.red.cgColor)</span><br><span class="line">		ctx.strokeEllipse(<span class="keyword">in</span>: layer.bounds) <span class="comment">//在layer上画一个圆</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在UIView中则不需要设置代理，直接在drawRect中就可以自定义绘制了</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">(<span class="number">_</span> rect: CGRect)</span></span> &#123;</span><br><span class="line">	<span class="keyword">let</span> content = <span class="type">UIGraphicsGetCurrentContext</span>() <span class="comment">//获取上下文</span></span><br><span class="line">	content?.setLineWidth(<span class="number">10.0</span>)</span><br><span class="line">	content?.setStrokeColor(<span class="type">UIColor</span>.red.cgColor)</span><br><span class="line">	content?.strokeEllipse(<span class="keyword">in</span>: rect)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="3、图层几何"><a href="#3、图层几何" class="headerlink" title="3、图层几何"></a>3、图层几何</h5><ul>
-<li>frame &amp; bounds 的关系</li>
-</ul>
-<p><img src="/2018/11/10/iOS-CoreAnimation/framebounds.png" alt=""></p>
-<p>​    frame是包含整个bounds的最大矩形。</p>
-<ul>
-<li>坐标系</li>
-</ul>
-<p>CALayer与UIView不同，CALayer是一个三维坐标，它有zPosition属性。它可以用来做3D动画变换和改变图层的显示顺序。</p>
-<p>hitTest 用来判断点击的point 是否在当前视图内</p>
-<h5 id="4、视觉效果"><a href="#4、视觉效果" class="headerlink" title="4、视觉效果"></a>4、视觉效果</h5><p>CALayer提供了几个很好的属性来实现视觉效果</p>
-<ul>
-<li>圆角：conrnerRadius，用来设置圆角曲率的值。一般与maskToBounds结合使用，将圆角之外的内容裁剪掉。<strong>但是如果要实现部分圆角部分直角的视图，则需要使用其他的办法，比如图层蒙版或者专用图层CAShaperLayer</strong></li>
-<li>边框：border，包括width和color</li>
-<li>阴影：shadow，<strong>阴影继承自内容的外形</strong>。</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> contentLayer = <span class="type">UIView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">84</span>, width: <span class="number">200</span>, height: <span class="number">200</span>))</span><br><span class="line">contentLayer.layer.contents = <span class="type">UIImage</span>(named: <span class="string">"snowman"</span>)?.cgImage <span class="comment">//将内容改成图片，而不是单纯的矩形</span></span><br><span class="line">view.addSubview(contentLayer)</span><br><span class="line">contentLayer.layer.shadowOffset = <span class="type">CGSize</span>(width: <span class="number">3</span>, height: <span class="number">3</span>)</span><br><span class="line">contentLayer.layer.shadowOpacity = <span class="number">1</span></span><br><span class="line">contentLayer.layer.shadowColor = <span class="type">UIColor</span>.black.cgColor</span><br><span class="line">contentLayer.layer.shadowRadius = <span class="number">1</span> <span class="comment">//阴影与视图的边界透明度</span></span><br></pre></td></tr></table></figure>
-<p><strong>阴影裁剪</strong>：</p>
-<p>阴影裁剪是开发过程中经常碰到的问题，因为阴影本身是处在图层边界之外的，而视图裁剪开启了maskToBounds会把裁剪之外的额内容都去掉。比如实现一个圆角带阴影的视图，那么实现的方式就只能是用两个图层来实现:一个化应用的外图层和一个用maskToBounds的内图层</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cornerAndShadow</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//阴影层</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> shawdowView = <span class="type">UIView</span>.<span class="keyword">init</span>(frame: <span class="type">CGRect</span>(x: <span class="number">250</span>, y: <span class="number">100</span>, width: <span class="number">100</span>, height: <span class="number">100</span>))</span><br><span class="line"></span><br><span class="line">    shawdowView.layer.shadowOffset = <span class="type">CGSize</span>(width: <span class="number">3</span>, height: <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    shawdowView.layer.shadowOpacity = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    shawdowView.layer.shadowColor = <span class="type">UIColor</span>.black.cgColor</span><br><span class="line"></span><br><span class="line">    shawdowView.layer.shadowRadius = <span class="number">1</span> <span class="comment">//阴影与视图的边界透明度</span></span><br><span class="line"></span><br><span class="line">    view.addSubview(shawdowView)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">//内容层</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> contentView = <span class="type">UIView</span>(frame: shawdowView.bounds)</span><br><span class="line"></span><br><span class="line">    contentView.backgroundColor = <span class="type">UIColor</span>.yellow</span><br><span class="line"></span><br><span class="line">    contentView.layer.cornerRadius = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">    contentView.layer.masksToBounds = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    shawdowView.addSubview(contentView)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>阴影性能优化</strong>：在设置阴影的时候，iOS会先绘制目标的阴影，然后绘制目标本身，在没有指定阴影路径的时候，iOS在视图每次绘制前都会递归地精确计算每个子层的阴影，这也就造成了<strong>离屏渲染</strong>的问题。而添加了shadowpath就相当于告诉了GPU每次需要绘制的路径，这样就解决了离屏渲染的问题。接到上面代码，添加：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加shawdowpath解决离屏渲染</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> bezierpath = <span class="type">UIBezierPath</span>.<span class="keyword">init</span>(rect: shawdowView.bounds)</span><br><span class="line"></span><br><span class="line">    shawdowView.layer.shadowPath = bezierpath.cgPath</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>图层蒙版     mask<br>它是layer的一个属性，给layer添加完mask后，最后就只有mask内容的东西会存留下来。其他的东西则会被挖走。</p>
-</li>
-<li><p>组透明<br>shouldRasterize 是视图在透明度之前，将其与子视图整合成一个完整的图片。这样设置透明度的时候就不会出现透明度混合的问题了</p>
-</li>
-</ul>
-<h5 id="5、性能优化"><a href="#5、性能优化" class="headerlink" title="5、性能优化"></a>5、性能优化</h5><ul>
-<li>CPU VS GPU</li>
-</ul>
-<p>可以说CPU主要负责软件层面的工作，GPU主要负责硬件层面的工作。<br>动画和屏幕上组合的图层实际上被一个单独的进程管理，而不是你的应用程序。这个进程就是所谓的渲染服务。<br>当运行一个动画时，core animation如何为CPU和GPU分配工作呢？<br>举个例子：当一个动作发生时，会被分解成这几个部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: Start</span><br><span class="line">layoutop=&gt;operation: 布局</span><br><span class="line">displayop=&gt;operation: 绘制显示</span><br><span class="line">prepareop=&gt;operation: 准备提交</span><br><span class="line">commitop=&gt;operation: 提交</span><br><span class="line">caculateop=&gt;operation: 对所有图层属性进行计算中间值，设置OpenGL几何形状执行渲染</span><br><span class="line">paintop=&gt;operation: 在屏幕上进行渲染 </span><br><span class="line">st-&gt;layoutop-&gt;displayop-&gt;prepareop-&gt;commitop-&gt;caculateop-&gt;paintop</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://ask.qcloudimg.com/http-save/yehe-1734423/rq7ogmxxpa.png?imageView2/2/w/1620" alt=""></p>
-<p>布局：即视图/图层层级关系，以及设计图层的属性（位置、背景色、边框）<br>显示：绘制阶段，可能涉及drawRect和drawLayer:inContext:方法里。<br>准备：图片编解码<br>提交：core animation打包所有图层和动画属性，通过IPC发送到渲染服务进行显示<br>显示1：对所有图层计算中间值，设置OpenGL几何形状来执行渲染<br>显示2：在屏幕上渲染可见的三角形</p>
-<p><strong>这里前面5个阶段由CPU进行处理。最后阶段由GPU执行。</strong></p>
-<ul>
-<li><p>GPU：它用来采集图片和形状，运行变换，应用纹理和混合然后把它们输送到屏幕上。但是下面的操作会降低GPU图层绘制。主要是通过影响帧率。</p>
-<ul>
-<li>太多几何结构；</li>
-<li>重绘；</li>
-<li>离屏绘制；</li>
-<li>过大的图片</li>
-</ul>
-</li>
-<li><p>CPU：CPU的操作都发生在显示之前，所以不会影响到帧率。但是有些因素会延迟绘画开始时间，使界面看起来迟钝。</p>
-<ul>
-<li><p>布局计算；</p>
-</li>
-<li><p>视图懒加载；（懒加载对视图启动时间很好，但是懒加载会比正常的操作慢一些）</p>
-</li>
-<li><p>Core Graphics绘制；解压图片；</p>
-</li>
-</ul>
-</li>
-<li><p>IO操作： IO操作是指闪存或者网络接口的硬件访问（比如远程URL加载图片，加载nib文件）。IO比内存访问更慢。 </p>
-<h4 id="6、高效绘图"><a href="#6、高效绘图" class="headerlink" title="6、高效绘图"></a>6、高效绘图</h4></li>
-<li><p>脏区域：需要重绘的区域称为脏区域。普通的绘图，当一个视图被改动过一小部分，重绘则会将整个寄宿图都重绘，如果使用setNeedsDisplayInRect:指定需要重绘的区域，则可以减少重绘的内容。</p>
-</li>
-<li><p>异步绘制：CATiledLayer和drawsAsynchronously是绘制可以放到另外一个线程进行，然后将绘制的内容直接设置为图层。</p>
-</li>
-</ul>
-<h5 id="7、图像IO"><a href="#7、图像IO" class="headerlink" title="7、图像IO"></a>7、图像IO</h5><ul>
-<li>加载与潜伏：图片需要消耗很大一部分内存，而且不太可能把需要显示的图片一次性放入内存中，所以需要周期性地加载和卸载图片。其次图片加载的速度被CPU和IO同时影响。其次图片的数量(比如快速滑动cell)和远程加载都将造成等待。所以需要引入后台线程。<ul>
-<li>线程加载：使用GCD或NSOperation加载图片，然后在主线程中设置。</li>
-<li>延迟解压：一旦图片被加载就必须进行解码，解码过程需要消耗非常长的时间和大量内存。避免延时解压的方法就是使用imageName:方法，或者绕过UIKit，使用ImageIO（CGImage ）强制图片立刻解压，或者使用。</li>
-<li>CATileLayer: 异步加载大型图片。</li>
-</ul>
-</li>
-<li>缓存：滑动显示，最后不要一次性加载多张图片，而应该选择性地缓存。imageNamed：自动缓存了解压后的图片，但是最好不要用它加载大图，有可能被移除。</li>
-</ul>
-<h5 id="8、图层性能"><a href="#8、图层性能" class="headerlink" title="8、图层性能"></a>8、图层性能</h5><ul>
-<li><p>隐式绘制：使用特性的图层属性；使用特定的图层子类。比如用CAATextLayer代替UILabel。不要在内容不断变化的图层上使用光栅化，否则光栅化缓存方面的好处将会消失，而且让性能变得更糟。</p>
-</li>
-<li><p>离屏渲染：图层的以下属性将会触发离屏绘制</p>
-<ul>
-<li>圆角（当和maskToBounds一起使用时）</li>
-<li>图层蒙板</li>
-<li>阴影<br>对于那些需要动画而且要在屏幕外渲染的图层来说，可以使用CAShapeLayer、contentsCenter、shadowPath替代。<br>圆角：使用CAShapeLayer+UIBezierPath 的 bezierPathWithARoundedRect:cornerARadius:代替。最后的方式是使用一个圆角背景图片。</li>
-</ul>
-</li>
-<li><p>混合和过度绘制：合并不同图层的透明重叠像素消耗的资源也是很客观的。明智地使用shouldRasterize属性。将固定的图层体系折叠成单张图片，这样就不需要每一帧重新合成，也不会因为子图层导致混合和过度绘制了。</p>
-</li>
-<li><p>减少图层数量：使用缓存复用，减少图层的创建。类似cell</p>
-</li>
-</ul>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -859,6 +482,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -879,8 +506,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -931,6 +567,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#OC与Runtime"><span class="nav-number">1.</span> <span class="nav-text">OC与Runtime</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类与对象"><span class="nav-number">2.</span> <span class="nav-text">类与对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法与成员"><span class="nav-number">3.</span> <span class="nav-text">方法与成员</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Method"><span class="nav-number">3.1.</span> <span class="nav-text">Method:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Property"><span class="nav-number">3.2.</span> <span class="nav-text">Property</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ivar"><span class="nav-number">3.3.</span> <span class="nav-text">Ivar</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内存布局"><span class="nav-number">3.4.</span> <span class="nav-text">内存布局</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法传参"><span class="nav-number">3.5.</span> <span class="nav-text">方法传参</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Runtime消息发送机制："><span class="nav-number">4.</span> <span class="nav-text">Runtime消息发送机制：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Category"><span class="nav-number">5.</span> <span class="nav-text">Category</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息转发"><span class="nav-number">6.</span> <span class="nav-text">消息转发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Method-Swizzling-黑魔法"><span class="nav-number">7.</span> <span class="nav-text">Method Swizzling 黑魔法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Runtime应用总结"><span class="nav-number">8.</span> <span class="nav-text">Runtime应用总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1071,6 +723,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

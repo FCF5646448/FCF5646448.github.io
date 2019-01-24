@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="OC与RuntimeOC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。 OC是一门动态语言，有三个表现特征：动态类型、动态绑定、动态加载。 OC对消息的处理需要先确定实际执行的方法然后在跳转过去执">
+<meta name="description" content="OC的面向对象、消息派发、动态绑定、内存管理等机制，都是与Runtime运行时环境息息相关的。OC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。">
 <meta name="keywords" content="runtime">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Runtime">
 <meta property="og:url" content="http://yoursite.com/2019/01/23/Runtime/index.html">
 <meta property="og:site_name" content="FCF Home">
-<meta property="og:description" content="OC与RuntimeOC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。 OC是一门动态语言，有三个表现特征：动态类型、动态绑定、动态加载。 OC对消息的处理需要先确定实际执行的方法然后在跳转过去执">
+<meta property="og:description" content="OC的面向对象、消息派发、动态绑定、内存管理等机制，都是与Runtime运行时环境息息相关的。OC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/01/23/Runtime/runtimexmind.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/23/Runtime/runtimeObjc.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/23/Runtime/methodforward.png">
-<meta property="og:updated_time" content="2019-01-24T01:50:14.439Z">
+<meta property="og:updated_time" content="2019-01-24T02:29:50.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime">
-<meta name="twitter:description" content="OC与RuntimeOC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。 OC是一门动态语言，有三个表现特征：动态类型、动态绑定、动态加载。 OC对消息的处理需要先确定实际执行的方法然后在跳转过去执">
+<meta name="twitter:description" content="OC的面向对象、消息派发、动态绑定、内存管理等机制，都是与Runtime运行时环境息息相关的。OC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。">
 <meta name="twitter:image" content="http://yoursite.com/2019/01/23/Runtime/runtimexmind.png">
 
 
@@ -297,6 +297,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -309,6 +331,10 @@
 
           
 
+          
+              <div class="post-description">
+                  OC的面向对象、消息派发、动态绑定、内存管理等机制，都是与Runtime运行时环境息息相关的。OC是一个面向对象的语言，面向对象是指把一定的算法函数和数据变量以某种内在联系绑定在一起，形成最基本的结构单元，这些结构单元即是抽象的对象，对其进行赋值等操作，则就会成为实体对象，即实例。通过使用继承、派生等手法可以让对象与对象之间产生各种微妙的联系。
+              </div>
           
 
         </div>
@@ -544,6 +570,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             

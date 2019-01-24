@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="FCF Home">
 <meta property="og:description" content="开发测试小工具。包含日志打印、cook、IP、网络状态能测试基础信息">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/12/03/FLogTools/screenshots/loglevel.png">
-<meta property="og:updated_time" content="2019-01-24T04:37:22.522Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/FLogTools/loglevel.png">
+<meta property="og:updated_time" content="2019-01-24T04:40:14.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FLogTools">
 <meta name="twitter:description" content="开发测试小工具。包含日志打印、cook、IP、网络状态能测试基础信息">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/03/FLogTools/screenshots/loglevel.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/03/FLogTools/loglevel.png">
 
 
 
@@ -359,7 +359,7 @@
 </li>
 </ul>
 <p>来看下当前Demo的效果图:</p>
-<p><img src="/2018/12/03/FLogTools/./screenshots/loglevel.png" alt=""></p>
+<p><img src="/2018/12/03/FLogTools/loglevel.png" alt=""></p>
 <h5 id="01、FLogConsoleManager-基础打印类"><a href="#01、FLogConsoleManager-基础打印类" class="headerlink" title="01、FLogConsoleManager 基础打印类"></a>01、FLogConsoleManager 基础打印类</h5><h6 id="首先对于系统的NSLog，它是一个很耗性能的方法NSLog耗性能原因，所以在release模式下，是不应该使用的，而小工具也是无需在release模式下展示的。所以使用"><a href="#首先对于系统的NSLog，它是一个很耗性能的方法NSLog耗性能原因，所以在release模式下，是不应该使用的，而小工具也是无需在release模式下展示的。所以使用" class="headerlink" title="首先对于系统的NSLog，它是一个很耗性能的方法NSLog耗性能原因，所以在release模式下，是不应该使用的，而小工具也是无需在release模式下展示的。所以使用"></a>首先对于系统的NSLog，它是一个很耗性能的方法<a href="http://blog.sunnyxx.com/2014/04/22/objc_dig_nslog/" target="_blank" rel="noopener">NSLog耗性能原因</a>，所以在release模式下，是不应该使用的，而小工具也是无需在release模式下展示的。所以使用</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#ifdef DEBUG</span><br><span class="line">#define FLog(...) printf(&quot;xxx&quot;);</span><br><span class="line">#else </span><br><span class="line">#define FLog(...)</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
 <h6 id="宏的使用与说明"><a href="#宏的使用与说明" class="headerlink" title="宏的使用与说明"></a>宏的使用与说明</h6><p>知识点：<strong>attribute</strong> </p>
 <ul>

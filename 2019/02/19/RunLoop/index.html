@@ -79,20 +79,21 @@
 
 
 
-<meta name="description" content="理论自我理解首先，一个函数(包括main函数)在按顺序执行完逻辑代码后就会return，然后函数栈里的资源就会被回收掉。比如C语言的简单main函数，执行return后，程序就结束了。那一个APP，其实也是由main函数入口和结束的程序。如果main函数里什么都不做，跑完会立马回到桌面上。比如iOS123456int main(int argc, char * argv[]) &amp;#123;">
+<meta name="description" content="RunLoop是内部维护事件循环的一个对象。而事件循环可以不断地对消息或事件进行管理：当没有消息时，会将进程从用户态切到内核态，由此对当前线程进行休眠，以避免资源占用；当有消息需要处理时，会从内核态切到用户态，以便及时唤醒线程。">
 <meta name="keywords" content="runloop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RunLoop">
 <meta property="og:url" content="http://yoursite.com/2019/02/19/RunLoop/index.html">
 <meta property="og:site_name" content="FCF Home">
-<meta property="og:description" content="理论自我理解首先，一个函数(包括main函数)在按顺序执行完逻辑代码后就会return，然后函数栈里的资源就会被回收掉。比如C语言的简单main函数，执行return后，程序就结束了。那一个APP，其实也是由main函数入口和结束的程序。如果main函数里什么都不做，跑完会立马回到桌面上。比如iOS123456int main(int argc, char * argv[]) &amp;#123;">
+<meta property="og:description" content="RunLoop是内部维护事件循环的一个对象。而事件循环可以不断地对消息或事件进行管理：当没有消息时，会将进程从用户态切到内核态，由此对当前线程进行休眠，以避免资源占用；当有消息需要处理时，会从内核态切到用户态，以便及时唤醒线程。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/02/19/RunLoop/RunLoop.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/19/RunLoop/runloop.jpeg">
-<meta property="og:updated_time" content="2019-02-19T03:34:47.506Z">
+<meta property="og:updated_time" content="2019-02-19T03:40:18.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RunLoop">
-<meta name="twitter:description" content="理论自我理解首先，一个函数(包括main函数)在按顺序执行完逻辑代码后就会return，然后函数栈里的资源就会被回收掉。比如C语言的简单main函数，执行return后，程序就结束了。那一个APP，其实也是由main函数入口和结束的程序。如果main函数里什么都不做，跑完会立马回到桌面上。比如iOS123456int main(int argc, char * argv[]) &amp;#123;">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/19/RunLoop/runloop.jpeg">
+<meta name="twitter:description" content="RunLoop是内部维护事件循环的一个对象。而事件循环可以不断地对消息或事件进行管理：当没有消息时，会将进程从用户态切到内核态，由此对当前线程进行休眠，以避免资源占用；当有消息需要处理时，会从内核态切到用户态，以便及时唤醒线程。">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/19/RunLoop/RunLoop.png">
 
 
 
@@ -330,6 +331,10 @@
           
 
           
+              <div class="post-description">
+                  RunLoop是内部维护事件循环的一个对象。而事件循环可以不断地对消息或事件进行管理：当没有消息时，会将进程从用户态切到内核态，由此对当前线程进行休眠，以避免资源占用；当有消息需要处理时，会从内核态切到用户态，以便及时唤醒线程。
+              </div>
+          
 
         </div>
       </header>
@@ -344,7 +349,8 @@
       
 
       
-        <h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><h4 id="自我理解"><a href="#自我理解" class="headerlink" title="自我理解"></a>自我理解</h4><p>首先，一个函数(包括main函数)在按顺序执行完逻辑代码后就会return，然后函数栈里的资源就会被回收掉。比如C语言的简单main函数，执行return后，程序就结束了。那一个APP，其实也是由main函数入口和结束的程序。如果main函数里什么都不做，跑完会立马回到桌面上。比如iOS<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char * argv[]) &#123;</span><br><span class="line">    return 0; //执行完这里就会退回桌面</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p><img src="/2019/02/19/RunLoop/RunLoop.png" alt=""></p>
+<h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><h4 id="自我理解"><a href="#自我理解" class="headerlink" title="自我理解"></a>自我理解</h4><p>首先，一个函数(包括main函数)在按顺序执行完逻辑代码后就会return，然后函数栈里的资源就会被回收掉。比如C语言的简单main函数，执行return后，程序就结束了。那一个APP，其实也是由main函数入口和结束的程序。如果main函数里什么都不做，跑完会立马回到桌面上。比如iOS<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char * argv[]) &#123;</span><br><span class="line">    return 0; //执行完这里就会退回桌面</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>那要怎样，我们才能保留App程序的活性呢！很简单，在main函数里添加一个死循环。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char * argv[]) &#123;</span><br><span class="line">    do &#123;</span><br><span class="line">        printf(&quot;xxx&quot;);</span><br><span class="line">    &#125; while (1);</span><br><span class="line">    </span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这时候你会发现App程序不会再退出来了，而是一直在消耗CPU和内存，直到iOS系统把它强制杀掉。而RunLoop实际上也是一个类似的运行循环，使iOS应用程序在main函数中保存运行状态，不会退出。</p>
 <p>标准答案： <strong>RunLoop是通过内部维护的“事件循环”来对“事件/消息进行管理”的一个对象</strong><br>关键点：<br><strong>事件循环（Event Loop）</strong>：维护的事件循环可以用来不断地处理事件或消息，然后进行管理 ！同时当没有消息需要处理时，会从用户态向内核态进行切换，由此可以进行当前线程的休眠，以避免资源占用；另外当有消息需要处理时，会发生从内核态到用户态的切换，然后当前用户线程就会立即被唤醒。(所以不是上面假设的while循环那么简单)。   有消息需要处理时是<strong>用户态</strong>，没有时是<strong>内核态</strong>。<br>用户态：系统上层应用程序活动的空间。<br>内核态：内核资源，为上层应用提供资源。</p>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="UI视图,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="TableView的cell复用机制、数据源同步问题、事件传递、图像的显示原理(异步绘制、离屏渲染)">
+<meta name="keywords" content="UI视图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UI视图">
+<meta property="og:url" content="http://yoursite.com/2019/02/19/UIViewAbout/index.html">
+<meta property="og:site_name" content="FCF Home">
+<meta property="og:description" content="TableView的cell复用机制、数据源同步问题、事件传递、图像的显示原理(异步绘制、离屏渲染)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-13T07:50:32.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UI视图">
+<meta name="twitter:description" content="TableView的cell复用机制、数据源同步问题、事件传递、图像的显示原理(异步绘制、离屏渲染)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/19/UIViewAbout/">
+
+
+
+
+
+  <title>UI视图 | FCF Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FCF Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/19/UIViewAbout/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FengCaifan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FCF Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UI视图</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-19T11:18:03+08:00">
+                2019-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  TableView的cell复用机制、数据源同步问题、事件传递、图像的显示原理(异步绘制、离屏渲染)
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="TableView"><a href="#TableView" class="headerlink" title="TableView"></a>TableView</h4><h5 id="cell复用策略"><a href="#cell复用策略" class="headerlink" title="cell复用策略"></a>cell复用策略</h5><p>总结来说：<br>1、tableView在初始化时会同时创建一个空的复用池，之后在内部 维护着这个cell复用池。<br>2、复用池的方法一般有两种：</p>
+<ul>
+<li><p>1、取出一个空的cell再新建一个。具体的api就是 <strong>dequeueReusableCellWithIdentifier: </strong>，使用这个消息提取cell，则取出来的cell是有可能为nil的，所以需要判断cell是否为空，否则就得创建：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@“indentifier”];</span><br><span class="line">    if (cell == nil) &#123;</span><br><span class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@“indentifier”];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2、预先注册一个cell，之后再直接从复用池里取出来。具体的api就是<strong>dequeueReusableCellWithIdentifier:forIndexPath:</strong>，使用这个消息提取cell的前提是必须先通过tableView的register方法进行注册，使用register方法时，会先做cell的初始化同时添加进复用池。所以它不必做nil判断，因为取出来的cell是必定存在的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//注册</span><br><span class="line">[tableView registerClass:[UITableView class] forCellReuseIdentifier:@&quot;Identifier&quot;];</span><br><span class="line">//使用</span><br><span class="line">cell=[tableView dequeueReusableCellWithIdentifier:@&quot;Identifier&quot; forIndexPath:indexPath];</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>3、存入复用池和从复用池取出cell的时机是很重要的，当整个cell从屏幕的显示范围<strong>完全移出</strong>时，会将这个cell添加进重用池，或者使用register方法时就会同时被添加加复用池。(当然了，这个重用池肯定是使用Set来存储唯一用identifier的cell的)。当一个cell即将被显示时，则会去重用池查找是否有相关cell。<br>代码模拟一下复用池里的情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">.h</span><br><span class="line">// 实现重用机制的类</span><br><span class="line">@interface ViewReusePool : NSObject</span><br><span class="line">//取</span><br><span class="line">- (UIView *)dequeuereusebleView;</span><br><span class="line">//存</span><br><span class="line">- (void)addUsingView:(UIView *)view;</span><br><span class="line">//重置复用池</span><br><span class="line">- (void)reset;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">.m</span><br><span class="line">@interface ViewReusePool()</span><br><span class="line">//等待使用的队列</span><br><span class="line">@property (nonatomic, strong) NSMutableSet * waitUsedQueue;</span><br><span class="line">//使用中的队列</span><br><span class="line">@property (nonatomic, strong) NSMutableSet * usingQueue;</span><br><span class="line">@end</span><br><span class="line">@implementation ViewReusePool</span><br><span class="line"></span><br><span class="line">- (instancetype)init</span><br><span class="line">&#123;</span><br><span class="line">    self = [super init];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        _waitUsedQueue = [NSMutableSet set];</span><br><span class="line">        _usingQueue = [NSMutableSet set];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//取</span><br><span class="line">- (UIView *)dequeuereusebleView &#123;</span><br><span class="line">    UIView * view = [_waitUsedQueue anyObject];</span><br><span class="line">    if (view == nil) &#123;</span><br><span class="line">        return nil; //没有可重用的</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        //进行队列移动</span><br><span class="line">        [_waitUsedQueue removeObject:view];</span><br><span class="line">        [_usingQueue addObject:view];</span><br><span class="line">        return view;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//存</span><br><span class="line">- (void)addUsingView:(UIView *)view &#123;</span><br><span class="line">    if (view == nil) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    [_usingQueue addObject:view];</span><br><span class="line">&#125;</span><br><span class="line">//重置复用池</span><br><span class="line">- (void)reset &#123;</span><br><span class="line">    UIView *view = nil;</span><br><span class="line">    while ((view = [_usingQueue anyObject])) &#123;</span><br><span class="line">        //从使用队列中移除</span><br><span class="line">        [_usingQueue removeObject:view];</span><br><span class="line">        //添加进等待队列</span><br><span class="line">        [_waitUsedQueue addObject:view];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<h5 id="多线程下的数据源同步"><a href="#多线程下的数据源同步" class="headerlink" title="多线程下的数据源同步"></a>多线程下的数据源同步</h5><p><strong>场景描述:</strong><br>UITableView有一个数据源dataSource。在弱网情况下，用户连续执行了两个操作，一个是下拉调起接口重新拉取DataSource里的数据，一个是在接口请求还没回来的情况下，左滑对某一条数据进行了删除。删除是在主线程下执行的，接口加载是在子线程下进行的。所以在接口请求回来后，给datasource进行复制的时候，就会把刚删除的数据重新赋值给DataSource。此时就产生了数据源同步的问题。</p>
+<p><strong>解决的方案：</strong><br>1、将删除后的元数据进行拷贝，当接口数据回来之后，进行比对，剔除被删除的数据，然后再进行DataSource的赋值，最后回到主线程更新UI。<br>2、删除操作时，先对要删除的数据进行标识(实际先不进行删除)，然后在数据接口回来之后，再将数据进行删除，最后回到主线程更新UI。</p>
+<h4 id="事件传递"><a href="#事件传递" class="headerlink" title="事件传递"></a>事件传递</h4><ul>
+<li>UIView 和 CALayer：<br>UIView有一个属性叫做layer，它所对应的类型就是CALayer类型，CALayer有个id类型的contents属性，它实际上对应着一个CGImageRef(位图)。实际上UIView的显示部分就是由CALayer的contents决定的，最终的显示可以理解为都是位图。<br><strong>UIView 的职责就是为CALayer提供内容，已经负责处理触摸登响应事件，参与响应链。而CALayer 的职责则是负责显示内容contents</strong>。这实际上就是付合<strong>单一职责</strong>的设计原则。</li>
+<li>事件传递：<br>当点击某一个view的时候，系统是如何判断是由哪个view来响应该事件的呢？<br>两个函数hitTest:withEvent: 和pointInside:withEvent: 。hitTest是返回最终响应事件的视图，pointInside用来判断某个事件是否在当前的视图范围内，如果在就返回YES。</li>
+</ul>
+<p>1、假如我们点击了屏幕的某一个位置，则事件会传递给UIApplication管理的事件队列中；<br>2、UIApplication从队列中取出事件进行处理时，会将改事件传递给UIWindow。<br>3、UIWindow则会通过hitTest方法在视图层级中找到一个合适的view来处理事件，hitTest方法的大致处理流程大致如下：<br>    3.1 首先调用当前视图的pointInside:withEvent:方法判断触摸点是否在当前视图。若pointInside返回NO，则说明触摸点不在当前视图，hitTest返回nil；若返回YES，则会继续遍历当前视图的子视图，重复上述操作（视图遍历的顺序是倒序的，也就是从最上层开始查找，一旦找到就可以省去查找中间环节的视图）。直到有有非空的hitTest返回。</p>
+<ul>
+<li>应用场景：<br>1、扩大UIButton的点击区域：上下左右各增加20<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event &#123;</span><br><span class="line">    if (CGRectContainsPoint(CGRectInset(self.bounds, -20, -20), point)) &#123;</span><br><span class="line">        return YES;</span><br><span class="line">    &#125;</span><br><span class="line">    return NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>2、子view超出了父view的bounds响应事件：正常情况下超出部分是不会响应事件的，因为在父view的pointInsert函数里过不了关，所以解决方案是重写父view的pointInsert方法。</p>
+<ul>
+<li>视图响应链<br>如果说上面是事件传递机制的话，那么再找到view之后，最终决定谁来执行事件响应就是视图响应链了。视图响应链这是有从找到的子视图一直到最底部的父视图组成的一条链，意思是如果子view不对事件进行响应，则响应者就会被委托给父视图，以此类推。</li>
+</ul>
+<h4 id="图像的显示原理"><a href="#图像的显示原理" class="headerlink" title="图像的显示原理"></a>图像的显示原理</h4><p>首先UI视图的显示是由CPU和GPU协作完成的。CPU的工作主要是负责UI布局、文本计算、位图的渲染及一些图片编解码的准备工作，最终位图将通过Core Animation框架提交给GPU。GPU的工作主要就是图层的渲染和纹理和合成，具体就包括顶点着色、光栅化等。GPU产生的最终结果将会放到帧缓冲区内，当视图控制器接收到VSync信号后，就会去帧缓冲区提取帧视图，最终显示在屏幕上。</p>
+<h5 id="卡顿和掉帧"><a href="#卡顿和掉帧" class="headerlink" title="卡顿和掉帧"></a>卡顿和掉帧</h5><p>视图屏幕的刷新周期就是一个VSync信号的发送周期，其实也是一个runloop的迭代周期，也就是60帧/s，相当于16.7ms左右。也就是说CPU和GPU的合成工作必须在一个VSync信号周期之内完成，否则就容易造成掉帧，掉帧最终也就导致了卡顿等性能问题。所以我们一般解决卡顿等性能问题都是从CPU和GPU两个方面入手！</p>
+<ul>
+<li>对于CPU，我们可以将一些较耗时的对象生成释放、文本高度计算等放到子线程中，亦或进行<strong>异步绘制</strong>实现。</li>
+<li>对于GPU，就要尽量避免<strong>离屏渲染</strong>。</li>
+</ul>
+<h5 id="绘制原理-amp-异步绘制"><a href="#绘制原理-amp-异步绘制" class="headerlink" title="绘制原理&amp;异步绘制"></a>绘制原理&amp;异步绘制</h5><p>1、异步绘制就是通过实现layer的delegate方法：displayer，displayer方法里调用Core Graphics的API实现Bitmap的绘制，最后回到主线程给layer的contents进行赋值。这样就实现了异步绘制。</p>
+<p>2、设置CALayer的drawsAsynchronously为YES时，-drawRect:/drawInContext:里的绘制指令会延迟到延迟到后台线程里异步执行。</p>
+<h5 id="离屏渲染"><a href="#离屏渲染" class="headerlink" title="离屏渲染"></a>离屏渲染</h5><p>指GPU在当前屏幕缓冲区以外新开辟一个缓冲区进行渲染操作，这会增加GPU的工作量，也就将GPU的处理时间添加了，最后导致掉帧卡顿。那什么情况下会触发离屏渲染：<br>1、设置图层的圆角，且maskToBounds为YES时，会触发<br>2、设置视图的图层蒙版<br>3、阴影的设置<br>4、光栅化设置</p>
+<p>使用Attribute也会比较耗时。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UI视图/" rel="tag"># UI视图</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/23/Runtime/" rel="next" title="Runtime">
+                <i class="fa fa-chevron-left"></i> Runtime
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/19/RunLoop/" rel="prev" title="RunLoop">
+                RunLoop <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">FengCaifan</p>
+              <p class="site-description motion-element" itemprop="description">记录成长，记录生活</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#TableView"><span class="nav-number">1.</span> <span class="nav-text">TableView</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cell复用策略"><span class="nav-number">1.1.</span> <span class="nav-text">cell复用策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多线程下的数据源同步"><span class="nav-number">1.2.</span> <span class="nav-text">多线程下的数据源同步</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件传递"><span class="nav-number">2.</span> <span class="nav-text">事件传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像的显示原理"><span class="nav-number">3.</span> <span class="nav-text">图像的显示原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#卡顿和掉帧"><span class="nav-number">3.1.</span> <span class="nav-text">卡顿和掉帧</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#绘制原理-amp-异步绘制"><span class="nav-number">3.2.</span> <span class="nav-text">绘制原理&amp;异步绘制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#离屏渲染"><span class="nav-number">3.3.</span> <span class="nav-text">离屏渲染</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FengCaifan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

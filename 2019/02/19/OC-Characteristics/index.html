@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="FCF Home">
 <meta property="og:description" content="1、简述分类的实现原理，2、简述KVO的实现原理，3、简述通知的实现原理">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-15T01:50:02.515Z">
+<meta property="og:updated_time" content="2019-05-15T02:06:17.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC语言特性">
 <meta name="twitter:description" content="1、简述分类的实现原理，2、简述KVO的实现原理，3、简述通知的实现原理">
@@ -355,18 +355,18 @@
 <h4 id="category-关联："><a href="#category-关联：" class="headerlink" title="category + 关联："></a>category + 关联：</h4><p>category无法为类添加实例变量，若要实现为类添加实例变量，则可以使用关联对象。<br>objc_setAssociatedObjct ,<br>objc_getAssociatedObjct，<br>objc_removeAssociatedObjects</p>
 <p><strong>关联变量都是由AssociationsManager管理</strong>，AssociationsManager里面由一个静态AssociatiosHasMap来存储所有的关联对象。AssociatiosHasMap里对应的key值是被管理对象指针值，value是一个ObjcAssociationMap对象。ObjcAssociationMap的key值则是添加时设置的key值，value则是一个ObjcAssociation对象，ObjcAssociation里包含了内容和属性标识符，如copy等。</p>
 <h4 id="扩展Extension"><a href="#扩展Extension" class="headerlink" title="扩展Extension"></a>扩展Extension</h4><p>一般我们使用扩展声明私有属性、声明私有方法、声明私有成员变量。<br>扩展与分类的区别在于：<br>1、扩展是在编译时决议；<br>2、扩展只以声明的形式，多数情况下存在于宿主类的.m文件中<br>3、扩展不能作用于系统类</p>
-<p>代理:<br>1、注意循环引用<br>2、一对一传递方式<br>3、使用代理模式实现的</p>
-<p>通知<br>1、一对多的传递方式<br>2、使用观察者模式实现的，用于跨层传递消息<br>怎样实现通知机制<br><strong>NSNotificationCenter里面应该维护了一个Map表，key值应该就是notificationName，value则应该是一个list表，list中的每个元素应该包含了Observer和Selector</strong></p>
-<p>KVO： key-value-observering<br>1、使用观察者模式<br>2、使用isa-swizzling技术来实现kvo<br>kvo的实现细节：<br><strong>当我们给类A添加addObserver:forKeyPath:方法后，在运行时，系统会给类A生成一个NSKVONotifying_A的子类，同时将类A的isa指针指向NSKVONotifying_A，同时重新setter方法，以便通知所有观察者</strong>。<br>重写的Setter方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)setter:(id)obj &#123;</span><br><span class="line">    [self willChangeValueForKey:@&quot;keyPath&quot;];</span><br><span class="line">    //</span><br><span class="line">    [super setValue:obj];</span><br><span class="line">    [self didChangeValueForKey:@&quot;keyPath&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="代理"><a href="#代理" class="headerlink" title="代理:"></a>代理:</h4><p>1、注意循环引用<br>2、一对一传递方式<br>3、使用代理模式实现的</p>
+<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><p>1、一对多的传递方式<br>2、使用观察者模式实现的，用于跨层传递消息<br>怎样实现通知机制<br><strong>NSNotificationCenter里面应该维护了一个Map表，key值应该就是notificationName，value则应该是一个list表，list中的每个元素应该包含了Observer和Selector</strong></p>
+<h4 id="KVO：-key-value-observering"><a href="#KVO：-key-value-observering" class="headerlink" title="KVO： key-value-observering"></a>KVO： key-value-observering</h4><p>1、使用观察者模式<br>2、使用isa-swizzling技术来实现kvo<br>kvo的实现细节：<br><strong>当我们给类A添加addObserver:forKeyPath:方法后，在运行时，系统会给类A生成一个NSKVONotifying_A的子类，同时将类A的isa指针指向NSKVONotifying_A，同时重新setter方法，以便通知所有观察者</strong>。<br>重写的Setter方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)setter:(id)obj &#123;</span><br><span class="line">    [self willChangeValueForKey:@&quot;keyPath&quot;];</span><br><span class="line">    //</span><br><span class="line">    [super setValue:obj];</span><br><span class="line">    [self didChangeValueForKey:@&quot;keyPath&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>q1、通过kvc设置value能否生效?<br>能，因为KVC调用的setValue:forKey:这个方法，最终也会调用该类对应属性的set方法，而setter方法又正好被子类重写了，所以能够生效<br>q2、通过成员变量直接赋值value能否生效？<br>不能。需手动添加willChangeValueForKey和didChangeValueForKey方法才能生效。</p>
-<p>KVC：key-value-Coding<br>两个方法：</p>
+<h4 id="KVC：key-value-Coding"><a href="#KVC：key-value-Coding" class="headerlink" title="KVC：key-value-Coding"></a>KVC：key-value-Coding</h4><p>两个方法：</p>
 <ul>
 <li>-(id)valueForKey: ( NSString * ) key</li>
 <li>-(void)setValue:(id)value forKey:(NSString * ) key<br>q1: KVC 是否会破坏面向对象编程思想？<br>会，因为可以通过KVC访问到私有变量<br>q2: 系统实现逻辑</li>
 <li>valueForKey：会判断是否存在对应的getter方法，如果不存在，会判断实例变量是否存在，如果存在，会直接获取实例变量的值，否则会调用当前实例的 valueUndefinedKey的方法，抛出NSUndefinedKeyException异常。</li>
 <li>setValue: forKey: 会判断是否有跟这个key相关的方法，如果不存在，会判断实例变量是否存在，如果存在，直接赋值，否则会调用setValue: ForUndefinedKey方法，会抛出NSUndefinedKeyException异常。</li>
 </ul>
-<p>属性关键字<br>属性关键字分为哪几类？</p>
+<h4 id="属性关键字"><a href="#属性关键字" class="headerlink" title="属性关键字"></a>属性关键字</h4><p>属性关键字分为哪几类？</p>
 <ul>
 <li>读写权限：readWrite、 readOnly</li>
 <li>原子性：atomic、nonatomic</li>
@@ -551,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#分类Category"><span class="nav-number">1.</span> <span class="nav-text">分类Category</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#category-关联："><span class="nav-number">2.</span> <span class="nav-text">category + 关联：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展Extension"><span class="nav-number">3.</span> <span class="nav-text">扩展Extension</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#分类Category"><span class="nav-number">1.</span> <span class="nav-text">分类Category</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#category-关联："><span class="nav-number">2.</span> <span class="nav-text">category + 关联：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展Extension"><span class="nav-number">3.</span> <span class="nav-text">扩展Extension</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代理"><span class="nav-number">4.</span> <span class="nav-text">代理:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通知"><span class="nav-number">5.</span> <span class="nav-text">通知</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KVO：-key-value-observering"><span class="nav-number">6.</span> <span class="nav-text">KVO： key-value-observering</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KVC：key-value-Coding"><span class="nav-number">7.</span> <span class="nav-text">KVC：key-value-Coding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性关键字"><span class="nav-number">8.</span> <span class="nav-text">属性关键字</span></a></li></ol></div>
             
 
           </div>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="knoeledgePoints,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="总结了iOS学习当中的主要知识点。">
+<meta name="keywords" content="knoeledgePoints">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-CoreAnimation">
+<meta property="og:url" content="http://yoursite.com/2019/05/20/knowledgePoints01/index.html">
+<meta property="og:site_name" content="FCF Home">
+<meta property="og:description" content="总结了iOS学习当中的主要知识点。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-22T09:46:30.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-CoreAnimation">
+<meta name="twitter:description" content="总结了iOS学习当中的主要知识点。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/20/knowledgePoints01/">
+
+
+
+
+
+  <title>iOS-CoreAnimation | FCF Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FCF Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/knowledgePoints01/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FengCaifan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FCF Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS-CoreAnimation</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-20T17:36:48+08:00">
+                2019-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  总结了iOS学习当中的主要知识点。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h4><p>简单介绍一下MVVM框架及ViewModel作用<br>说到MVVM之前，首先要先介绍一下MVC框架，MVC框架就是Model-View-Controller组成，其中Model负责呈现数据，View负责UI展示，Controller则负责调解Model和View直接的交互。这样就导致了大部分的处理逻辑都在Controller当中，所以它又被称为“重量级视图控制器”。而MVVM框架则表示Model–ViewModel–（View Controller），它其实就是对MVC的一个优化而已，它将业务逻辑、网络请求和数据解析放在了ViewModel层，大大简化了Controller层的逻辑代码，也让model 、view的功能更加独立单一。</p>
+<h4 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h4><h5 id="HTTP："><a href="#HTTP：" class="headerlink" title="HTTP："></a>HTTP：</h5><p>http其实就是超文本传输协议，它主要包括请求报文和响应报文两部分组成。请求报文包括：方法(get、post)、url、http版本、首部字段(媒体类型、Encode编码格式、认证信息等)、实体主题；响应报文包括：http版本、状态码、首部字段(accept_range字节范围、时间、重定向URI)、实体主题。</p>
+<p><strong>http的特点</strong>：无连接（也就是每次请求连接都需要经历连接和断开的过程）、无状态（同一个用户在多次发送http请求时，server端并不知道是同一个用户发送的）</p>
+<p><strong>状态码</strong>：2xx、3xx、4xx、5xx，200请求成功，301、302一般是重定向问题、404一般是网络问题、504一般是指服务器问题。</p>
+<p><strong>Get和Post的区别</strong>：Get请求的参数通过？拼接在URL后面，post则放在Body里面。然后Get是安全的、幂等的、可缓存的，Post是非安全的、非幂等的、非可缓存的。安全性是指是否会引起server端的变化，幂等是指一种请求方法执行多次的结果是否完全相同，可缓存的是指代理服务器是否会进行缓存。</p>
+<p><strong>TCP三次握手</strong>：客服端向server端发送一个请求报文，server端接收到请求报文后会发送一个确认响应报文同时也附带一个建立连接的请求报文，客户端收到server端发来的请求报文后再会给server端一个确认报文。</p>
+<p><strong>TCP四次挥手</strong>：客户端想server端发送一个请求断开连接的报文，server端收到后会返回一个确认报文（这样客户端对server的连接就断开了），然后server端向客户端发送一个断开连接的请求报文，客户端收到后回复一个确认报文（这样server端对客户端的连接也断开了）</p>
+<p><strong>持久连接</strong>：应对http无连接特点。指在一定时间范围内不需要反复进行握手和挥手动作。http提供的持久连接的方案就是修改请求头部字段，比如connection: keep-alive(客户端期许采用持久连接)、time:20(持久连接时间)、max：10(这条连接最多可以发生多少次请求和响应对)。<br>那怎么判断持久连接中的一次连接已结束呢？1)通过响应头部字段：content-length:1024来判断。2)还有就是最后一个报文的chunked字段是否为空来判断。</p>
+<p><strong>Charles的抓包原理</strong>：利用了http中间人攻击漏洞进行抓包，中间人就是模仿客户端和server端的所有操作。</p>
+<h5 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h5><p><strong>HTTPS</strong>：HTTPS = HTTP + SSL/TLS。<br>HTTPS连接的建立流程：客户端先向server发送一个SSL版本及支持的加密算法和随机数C，server会返回一个选定的加密算法、随机数S、server端证书。客户端接收到后会先验证server证书（也就是server端公钥），然后通过C、S、预组秘钥组装成会话秘钥，之后通过server端公钥对预组秘钥进行加密发送给server端，server端则通过私钥解密预组秘钥，然后通过C、S、预组秘钥组装会话秘钥。然后客户端和server端相互发送一个加密消息，验证安全通道是否建立完成。<br>HTTPS都使用了哪些加密手段？<br>对称加密和非对称加密。非对称加密在公私钥中使用到，传输过程中则是使用对称加密。<br>什么是非对称加密和对称加密？<br>非对称加密包含两个概念：公钥、私钥。加解密使用的钥匙不一样的。用公钥加密，就得用私钥解密；私钥加密就得用公钥解密。<br>对称加密：加解密用的是同一个秘钥。</p>
+<h5 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h5><p><strong>UDP</strong>：用户数据报协议。<br>UDP特点：无连接、尽最大努力交付（不保证可靠传输）、面向报文(既不合并报文也不拆分报文，会原封不动传输报文，只是在运输层会拼装一个UDP首部)；<br>UDP提供的功能：复用(就是不同的端口都可以复用传输层UDP数据报)、分用(接收到数据报后，会根据目的端口进行分发)、差错检测(就是发送方通过某种方法计算出某个数据，将其插入到UDP首部传输给接收方，然后接收方接收到数据后，运用相同的方式进行计算，然后对比接收到的数据，进行差错检测。)</p>
+<p><strong>TCP</strong>：传输控制协议。则需要建立连接。<br>TCP特点：面向连接（数据传输开始和结束需要建立和释放连接）、可靠传输（无差错、无重复、按序到达）、面向字节流、流量控制、拥塞控制。</p>
+<p>Q1:为什么是3次握手，而不是两次？<br>假如客户端发送建立连接的请求报文发生了超时，客户端会启用超时重传策略，重新发送连接请求，Server端收到了会回复确认报文，那之后又收到了之前超时的请求连接，那就又会建立一次连接，这样就可能建立了两次连接。而多了那次客户端确认报文则可以解决这种问题。</p>
+<p>Q2、为什么是4次挥手，要分别断开两个方向的链接？<br>因为TCP建立的是一个全双通的链接，就是无论从客户端到server端，还是server端到客户端，都可以建立单独的发送与确认接收的通道，比如说在4次握手中，如果仅仅是进行了前两步（断开了客户端到server端的链接），那么此时客户端是不能向server端发送数据的，但是server端依旧可以向客户端发送数据。</p>
+<p>Q3 、怎么保证可靠传输的？<br>可靠传输是通过停止等待协议来实现的。它是包括4方面的：</p>
+<p>无差错情况：就是每次报文的传输中，server端收到后都会返回一个确认报文。</p>
+<p>超时重传：那如果超时了，也就意味着在这个时间范围内，server端没有收到报文，也自然没有返回确认报文，那客户端就会进行重新发送。</p>
+<p>确认丢失：是指server端返回的确认报文丢失了，那么同样的，客户端没有在时间限定内收到确认，所以会进行重新发送。server端会将第一次接到的报文丢失掉。</p>
+<p>确认迟到：指确认报文迟到了，客户端同样会进行确认丢失一样的操作。</p>
+<p>Q4、面向字节流?<br>是指TCP并不是原封不动地将发送方发送的字节一次性地完全地传输给接收方，而是会根据实际情况对字节流进行拆分或合并，然后再进行发送。和UDP的面向报文的方式正好相反。</p>
+<p>Q5、怎么做到流量控制、按序到底？<br>通过滑动窗口协议实现。TCP的发送缓存当中的数据都有字节编号，然后我们进行排序。将每次发送出去后收到的确认报文位置进行标记，将将要发送的字节流中的最后字节进行标记。然后这大概就是字节流中的一个小的字节窗口。但是为了避免接收方数据溢出，所以接收方需要动态调节发送方的窗口大小来控制发送速率（比如接收方只能接收2个字节了，那么发送方就最多只能发送2个字节。这个应该是放在报文的首部字段）。同样的，接收缓存中也会对已接收的字节进行排序，它会对按序到底的下一个期望到达的字节进行标记（比如已经接收了1、2、3字节，那么期望标记就是第4个字节，而返回给长层应用程序的字节就是这些已按序到底的字节部分，那比如说还接收到了第6个字节，则暂时不会进行处理。）。所以呢，这个滑动窗口协议就可以进行流量控制和按序到达了。</p>
+<p>Q6、拥塞控制：<br>慢开始、拥塞避免：一开始先发送一个报文，如果没有发送拥塞，则翻倍发送2个，然后再4个、16个(指数增长的方式)。一直达到窗口的门限初始值为止；然后再通过拥塞避免的策略，以线性增长的方式发送报文，可能达到某个值得时候，就产生了网络拥塞（比如连续3个报文没有收到确认报文），此时就越高采用拥塞避免的乘法减小的策略，只发送一个报文，同时将门限值降低，然后重新开始“慢开始”。</p>
+<p>快恢复、快重传：是指在达到拥塞时，回到新的门限值，以线性增长的方式发送报文，而不经过前面指数增长的慢开始阶段。</p>
+<h5 id="DNS解析："><a href="#DNS解析：" class="headerlink" title="DNS解析："></a>DNS解析：</h5><p>DNS解析过程？<br>DNS服务器是提供域名到IP之间的解析服务，一般计算机就是一个IP地址，但是纯数字不符合人类的记忆习惯，所以一般会有一个域名，比如<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> ，当我们代码对某个域名发起访问的时候，则要通过DNS解析，找到对应的IP，然后再进行访问 。一般DNS解析都是有运营商进行管理，比如移动的卡发出来的访问，先经过移动运营商，然后移动运营商找到对应的ip，然后进行访问。<br>DNS采用UDP数据报文，53端口号，且明文。</p>
+<p>DNS解析查询方式：<br>1、递归查询：按照 本地DNS——根域DNS——顶级DNS——权限DNS的层级一层层递归查找；<br>2、迭代查找：先查询本地DNS，然后本地DNS依次询问根域DNS、顶级DNS、权限DNS；<br>DNS劫持问题？<br>因为DNS是UDP明文传输，就有可能被钓鱼DNS劫持，返回错误的IP地址。<br>DNS劫持与解析都与http无关，它是发生在http之前的操作。<br>解决DNS劫持：<br>1、httpDNS：实际上DNS解析是指DNS协议向DNS服务器的53端口进行请求，采用HTTPDNS这种方式则是直接通过http协议向DNS服务器的80端口进行请求，这样实际上就不存在DNS解析了，所以也就不存在DNS解析问题了。比如：<a href="http://119.29.29.29/d?dn=www.baidu.com&amp;ip=163.177.153.109" target="_blank" rel="noopener">http://119.29.29.29/d?dn=www.baidu.com&amp;ip=163.177.153.109</a> (其中<a href="http://119.29.29.29/d" target="_blank" rel="noopener">http://119.29.29.29/d</a> 是国内最大的DNS域名服务器，dn=<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 是需要解析的域名，后面是本地IP地址)<br>2、长连接：<br>客户端采用 长连server 从API Server通过内网专线获取IP的方式</p>
+<p>DNS解析转发问题？<br>是指DNS解析服务器为了节省资源，将解析请求发送给其他DNS域名服务器，依次转发，最后返回的IP地址可能不是同一运营商的网络，存在跨网访问的可能，造成一些请求缓慢等效率问题。</p>
+<h5 id="Session-Cookie"><a href="#Session-Cookie" class="headerlink" title="Session/Cookie"></a>Session/Cookie</h5><p>应对http无状态特点，指多次发送同一个请求，server端无法知道是否是同一个用户。<br>Cookie主要是用来记录用户状态，区分用户；状态主要保存在客户端；<br>Session也是主要用来记录用户状态，区分用户；状态主要存放在server端。</p>
+<h4 id="常用三方库的实现原理和总结"><a href="#常用三方库的实现原理和总结" class="headerlink" title="常用三方库的实现原理和总结"></a>常用三方库的实现原理和总结</h4><p>3、Alamofire、SwiftJSon、SDWebImage、AsyncDisplayKit、realm大概使用与实现原理</p>
+<h5 id="AFNetworking"><a href="#AFNetworking" class="headerlink" title="AFNetworking"></a>AFNetworking</h5><p>整体框架：AFNetWorking整体框架主要是由会话模块(NSURLSession)、网络监听模块、网络安全模块、请求序列化和响应序列化的封装以及UIKit的集成模块(比如原生分类)。<br>其中最核心类是AFURLSessionManager，其子类AFHTTPSessionManager包含了AFURLRequestionSerialzation(请求序列化)、AFURLResponseSerialzation(响应序列化)两部分；同时AFURLSessionManager还包含了NSURLSession(会话模块)、AFsecurityPolicy(网络安全模块：证书校验)、AFNetWorkingReachabilityManager(负责对网络连接进行监听)；<br>AFURLSessionManager主要工作包括哪些？<br>1、负责管理和创建NSURLSession、NSURLSessionTask<br>2、实现NSURLSessionDelegate等协议的代理方法<br>3、引入AFSecurityPolicy保证请求安全<br>4、引入AFNetWorkingReachabilityManager监听网络状态</p>
+<h5 id="Alamofire：同一个作者写的swift版本的AFNetWorking"><a href="#Alamofire：同一个作者写的swift版本的AFNetWorking" class="headerlink" title="Alamofire：同一个作者写的swift版本的AFNetWorking"></a>Alamofire：同一个作者写的swift版本的AFNetWorking</h5><p>整体框架：Alamofire核心部分都在其Core文件夹内，它包含了核心的2个类、3个枚举、2个结构体；另一个文件夹Feature则包含了对这些核心数据结构的扩展。<br>2个类：Manager(提供对外接口，处理NSURLSession的代理方法)；Request(对请求的处理)；<br>3枚举：Method(请求方法)；ParameterEncoding(编码方式)；Result(请求成功或失败数据结构)<br>2结构体：Response(响应结构体)；Error(错误对象)<br>扩展中包括Manager的Upload、Download、Stream扩展、以及Request的扩展Validation和ResponseSerialization。<br>怎么处理多并发请求？<br>使用NSOperetionQueue！</p>
+<h5 id="SDWebImage："><a href="#SDWebImage：" class="headerlink" title="SDWebImage："></a>SDWebImage：</h5><p>整体框架：SDWebImage更多的是封装的UIKit的一些分类方法，比如说UIImageView+WebCache。主要功能是由SDWebImageManager进行管理，在此之下主要分为两部分：SDImageCache和SDWebImageDownloader，SDImageCache又同时分为磁盘缓存和内存缓存。<br>加载图片的流程：通过图片URL的hash值作为key值去查找内存缓存，如果内存缓存找不到则查找磁盘缓存，如果仍然没有查找到就去进行网络下载</p>
+<h5 id="AsyncDisplayKit："><a href="#AsyncDisplayKit：" class="headerlink" title="AsyncDisplayKit："></a>AsyncDisplayKit：</h5><p>整体框架：<br>正常情况下，UIView作为CALayer的delegate，而CALayer作为UIView的一个成员变量，负责视图展示工作。ASDK则是在此之上封装了一个ASNod类，它有点view的成员变量，可以生成一个UIView，同时UIView有一个.node成员属性，可以获取到它所对应的Node。而ASNode是线程安全的，它可以放到后台线程创建和修改。所以平时我们对UIView的一些相关修改就可以落地到对ASNode的属性的修改和提交，同时模仿Core Animation提交setneeddisplayer的这种形式把对ASNode的修改进行封装提交到一个全局容器中，然后监听runloop的beforewaiting的通知，当runloop进入休眠时，ASDK则可以从全局容器中把ASNode提取出来，然后把对应的属性设置一次性设置给UIView。</p>
+<p>主要解决的问题：布局的耗时运算(文本宽高、视图布局运算)、渲染(文本渲染、图片解码、图形绘制)、UIKit的对象处理(对象创建、对象调整、对象销毁)。因为这些对象基本都是在UIKit和Core Animation框架下，而UIKit和Core Animation相关操作必须在主线程中进行。所以ASDK的任务就是把这些任务从主线挪走，挪不走的就尽量优化。</p>
+<h5 id="Realm："><a href="#Realm：" class="headerlink" title="Realm："></a>Realm：</h5><p><a href="https://juejin.im/entry/5a1d44a6f265da432f30dd09" target="_blank" rel="noopener">https://juejin.im/entry/5a1d44a6f265da432f30dd09</a></p>
+<h4 id="音视频上传下载（断点续传）"><a href="#音视频上传下载（断点续传）" class="headerlink" title="音视频上传下载（断点续传）"></a>音视频上传下载（断点续传）</h4><p>断点下载：主要是利用Alamofire的 Downloader resume方法，传入已下载好的缓存的data。<br>断点续传：断点续传稍微复杂一点，但是和断点下载原理是一样的。大概流程就是我们data数据分割成多个片段；然后建一个小的数据model，它里边包含了每个片段的data数据，以及对应片段标记上传状态(waiting、finish、loading)，之后存储到本地。然后使用信号量和group将片段一个一个上传。如果网络中断了，下次进来的时候，查看一下是否有需要上传的文件，然后从上传断开处接着上传就好了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">//模拟代码，没有做本地缓存操作</span><br><span class="line">&#123;</span><br><span class="line">	//分片阶段</span><br><span class="line">	NSString *ps = [P stringByAppendingPathComponent:@&quot;bz.jpg&quot;];</span><br><span class="line">    NSData* imgData =[[NSData alloc] initWithContentsOfFile:ps];</span><br><span class="line">    NSUInteger totalLength = [imgData length];</span><br><span class="line">    NSUInteger minBlock = 10*1024;</span><br><span class="line">    NSUInteger count = totalLength/minBlock +(totalLength%minBlock?1:0);</span><br><span class="line">    NSUInteger lastIndexLength = totalLength - (count -1)*minBlock;</span><br><span class="line">    NSMutableArray *list = [[NSMutableArray alloc] initWithCapacity:count];</span><br><span class="line">    for(NSUInteger i =0; i&lt;count-1; i++)&#123;</span><br><span class="line">        NSData *d = [imgData subdataWithRange:NSMakeRange(i*(minBlock), minBlock)];</span><br><span class="line">        [list addObject:d];</span><br><span class="line">    &#125;</span><br><span class="line">    //最后一片</span><br><span class="line">    NSData *d = [imgData subdataWithRange:NSMakeRange((count -1)*minBlock, lastIndexLength)];</span><br><span class="line">     [list addObject:d];</span><br><span class="line">     </span><br><span class="line">    /*</span><br><span class="line">    将分片data重新整合，实验整合的图片能不能正常使用</span><br><span class="line">    NSMutableData *mutableData = [[NSMutableData alloc] init];</span><br><span class="line">    for (NSData *d in list) &#123;</span><br><span class="line">        [mutableData appendData:d];</span><br><span class="line">    &#125;</span><br><span class="line">    UIImage *img = [[UIImage alloc] initWithData:mutableData];</span><br><span class="line">    */</span><br><span class="line">    </span><br><span class="line">    //上传</span><br><span class="line">    dispatch_group_t group = dispatch_group_create();</span><br><span class="line">    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);//使用信号量控制每次</span><br><span class="line">    dispatch_queue_t queue = dispatch_queue_create(NULL,DISPARCH_QUEUE_SERIAL)//使用串行，因为要保证片段是按顺序上传的</span><br><span class="line">    for (int i =0; i&lt;[list count]  ; i++) &#123;</span><br><span class="line">         dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">         NSData *d = list[i];</span><br><span class="line">        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</span><br><span class="line">        manager.responseSerializer = [AFHTTPResponseSerializer serializer];</span><br><span class="line">        [manager POST:@&quot;http://10.0.1.4:8778/hb/user/uploaddd.do&quot; parameters:@&#123;@&quot;tmpId&quot;:@(i)&#125; constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt;  _Nonnull formData) &#123;</span><br><span class="line">            [formData appendPartWithFileData:d name:@&quot;uploadFile&quot; fileName:@&quot;uploadFile&quot; mimeType:@&quot;application/octet-stream&quot;];</span><br><span class="line">        &#125; progress:^(NSProgress * _Nonnull uploadProgress) &#123;</span><br><span class="line">            NSLog(@&quot;%lld     ------ %lld&quot;,uploadProgress.totalUnitCount,uploadProgress.completedUnitCount);</span><br><span class="line">        &#125; success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</span><br><span class="line">            NSLog(@&quot;%d&quot;,i);//顺序打印</span><br><span class="line">            dispatch_semaphore_signal(semaphore);</span><br><span class="line">        &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</span><br><span class="line">            NSLog(@&quot;%d&quot;,i);//顺序打印</span><br><span class="line">            dispatch_semaphore_signal(semaphore); </span><br><span class="line">        &#125;];</span><br><span class="line">            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    dispatch_group_notify(group, queue, ^&#123;</span><br><span class="line">        //所有请求返回数据后执行</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="播放器"><a href="#播放器" class="headerlink" title="播放器"></a>播放器</h4><p>通过kvo的方式监听”Status”和”loadedTimeranges”来分别监听播放状态和缓存时长。</p>
+<h4 id="runtime-及其埋点和越界崩溃"><a href="#runtime-及其埋点和越界崩溃" class="headerlink" title="runtime 及其埋点和越界崩溃"></a>runtime 及其埋点和越界崩溃</h4><p>runtime是指在程序运行期间才能确认对应的数据类型和方法调用等，OC有三大动态特性动态类型、动态加载、动态绑定，这都是通过runtime的机制实现的。</p>
+<h5 id="埋点"><a href="#埋点" class="headerlink" title="埋点"></a>埋点</h5><p>埋点主要是为了抓取一些主要的日志数据，然后上报。以便于在一些特殊的节点，可以通过日志查找到相关的数据和用户操作信息，更利于解决问题。<br>首先我们需要对日志进行分类，1是基本的接口日志(主要运用于测试)，2是用户的主要操作日志，3是主要节点日志(比如购买的信息身份的转变等)，4是异常日志(这个主要是依赖于bugly)<br>1、页面的统计：使用Method Swizzing代码混淆，重写UIViewController的ViewDidLoad方法。<br>2、点击统计：通过Method Swizzing代码混淆，hook sendAction:to:forEvent:方法。<br>3、tableview的cell点击：通过hook setDelegate方法，在设置代理时，再Swizzing代理实现了的didSelect方法。<br>4、然后剩余的关键节点的日志就得使用代码进行log了。</p>
+<p>然后就是上传服务器，可以在日志达到一定容量时进行上传。记得添加断点续传</p>
+<h5 id="越界崩溃"><a href="#越界崩溃" class="headerlink" title="越界崩溃"></a>越界崩溃</h5><p>首先越界崩溃也是通过runtime的方法混淆来做的，但是需要注意的是：抽象工厂模式的一些类的具体实现是隐藏的，也就是说，它们对应的真实名字分别是：NSArray—– NSArrayI；NSMutablArray —- NSArrayM；NSDictionary—NSDictionaryI；NSMutableDictionary —- NSDictionaryM。<br>然后使用swizing混淆相应方法。比如objectAtIndex</p>
+<h4 id="runloop、tableview卡顿"><a href="#runloop、tableview卡顿" class="headerlink" title="runloop、tableview卡顿"></a>runloop、tableview卡顿</h4><p>1、RunLoop是系统内部维护事件循环的一个对象。而事件循环可以不断地对消息或事件进行管理：当没有消息时，会将进程从用户态切向内核态，由此对当前线程进行休眠，以避免资源占用；当有消息需要处理时，会将进程从内核态切到用户态，以便及时唤醒当前线程（用户态指的是上层应用程序的活动空间；内核态指内核资源，为上层应用程序提供资源。）。所以，RunLoop可以保证进程不退出，可以监听事件，可以定时渲染UI，可以调节CPU的工作等</p>
+<ul>
+<li>runloop mode：包括default、tracking(界面跟踪mode，比如scrollview滑动)、UIInitialization(刚启动app时mode)、eventreceive(接受系统事件的mode)、common(其实是同步source、timer、observer到多个mode的技术方案)</li>
+<li>runloop消息循环机制：在runloop启动的时候会发出KCFRunLoopEntry通知，告知即将进去runloop，那一启动后就进入到了用户态模式。所以优先处理timer和source0（需要手动唤醒线程）事件，接着如果有source1(有唤醒线程的能力)事件，就接着处理source1事件，没有就发出beforWaiting通知进入休眠状态。在休眠期间，如果收到Timer、source1、手动事件，则又会被唤醒。</li>
+</ul>
+<p>2、UI显示原理：首先UI视图的显示是由CPU和GPU协作完成的。CPU的工作主要是负责UI布局、文本计算、位图的渲染及一些图片编解码等准备工作，最终位图将通过Core Animation框架提交给GPU。GPU的工作主要就是图层的渲染和纹理的合成，具体就包括顶点着色、光栅化等。GPU产生的最终结果将放到帧缓冲区中，当视图控制器接收到VSync信号后，就会去帧缓冲区提取帧视图，最终显示在屏幕上。一个VSync信号的发送周期是一个runloop的迭代周期，刷新屏幕大概是60帧/s，也就是16.7ms左右。也就是说CPU和GPU的合成工作必须在一个VSync周期之内，否则就容易造成掉帧，掉帧最终也就造成了卡顿等性能问题。所以一般我们解决卡顿等性能优化就可以从CPU和GPU两个方面入手！对于CPU，我们可以将一些较耗时的对象的生成释放、文本高度等复杂的计算放到子线程中，亦或通过实现layer的delegate方法displaylayer调用Core Graphics的API进行异步绘制；而对于GPU的话，就应该要避免离屏渲染，因为离屏渲染会在当前显示的屏幕缓冲区之外再开辟缓冲区，导致性能的消耗。而如果我们实现了CALayer的一些必须合成后使用的属性就可能会触发离屏渲染，比如阴影、图层蒙版、光栅、圆角与maskToBounds一起使用等！</p>
+<p>3、创建一个常驻线程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark -- RunLoop 实现常驻线程</span><br><span class="line">static BOOL runAlways = YES;</span><br><span class="line">- (void)usethread &#123;</span><br><span class="line">    [self performSelector:@selector(subThreadRun) onThread:self.thread withObject:nil waitUntilDone:NO];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//线程安全的方式创建thread</span><br><span class="line">- (NSThread *)thread &#123;</span><br><span class="line">    if (_thread == nil) &#123;</span><br><span class="line">        @synchronized (self) &#123;</span><br><span class="line">            _thread = [[NSThread alloc] initWithTarget:self selector:@selector(runThread) object:nil];</span><br><span class="line">            [_thread setName:@&quot;com.fcf.thread&quot;];</span><br><span class="line">            [_thread start];// 启动</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return _thread;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)runThread &#123;</span><br><span class="line">    //方法一：创建一个可控的runloop</span><br><span class="line">    //创建一个source</span><br><span class="line">    CFRunLoopSourceContext context = &#123;0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL&#125;;</span><br><span class="line">    CFRunLoopSourceRef source = CFRunLoopSourceCreate(kCFAllocatorDefault, 0, &amp;context);</span><br><span class="line"></span><br><span class="line">    //创建runloop，同时向runloop的defaultmode添加source CFRunLoopGetCurrent类似懒加载方法</span><br><span class="line">    CFRunLoopAddSource(CFRunLoopGetCurrent(), source, kCFRunLoopDefaultMode);</span><br><span class="line"></span><br><span class="line">    while (runAlways) &#123;</span><br><span class="line">        @autoreleasepool &#123;</span><br><span class="line">            //将当前runloop运行在kCFRunLoopDefaultMode下</span><br><span class="line">            CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1.0e10, true);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //当runaway为NO时跳出runloop，线程退出</span><br><span class="line">    CFRunLoopRemoveSource(CFRunLoopGetCurrent(), source, kCFRunLoopDefaultMode);</span><br><span class="line">    CFRelease(source);</span><br><span class="line">    </span><br><span class="line">    //方法二：创建一个一直存在的runloop</span><br><span class="line">//    @autoreleasepool &#123;</span><br><span class="line">//        NSRunLoop * runloop = [NSRunLoop currentRunLoop];</span><br><span class="line">//        [runloop addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];</span><br><span class="line">//        NSLog(@&quot;启动RunLoop前--%@&quot;,runloop.currentMode);</span><br><span class="line">//        [runloop run];</span><br><span class="line">//    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void) subThreadRun &#123;</span><br><span class="line">    NSLog(@&quot;启动RunLoop后--%@&quot;,[NSRunLoop currentRunLoop].currentMode);</span><br><span class="line">    NSLog(@&quot;%@----子线程任务开始&quot;,[NSThread currentThread]);</span><br><span class="line">    [NSThread sleepForTimeInterval:3.0];</span><br><span class="line">    NSLog(@&quot;%@----子线程任务结束&quot;,[NSThread currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4、UITableView优化：</p>
+<ul>
+<li>可以利用UI渲染的原理先对cell进行一些处理，比如说把高度计算、对象生成这些先在reload之前做好，然后cell上控件 实现异步绘制等，比如使用AsynDisplayKit，其次尽量避免离屏渲染。</li>
+<li>也可以利用runloop，利用runloop休眠时机执行耗时操作。方法就是使用一个定时器，然后将定时器放置到runloop里面，然后实现一个监听方法监听runloop的runloopbeforewaiting状态。然后在observer方法中执行耗时任务。</li>
+</ul>
+<h4 id="下载层设计思路，需要考虑的点"><a href="#下载层设计思路，需要考虑的点" class="headerlink" title="下载层设计思路，需要考虑的点"></a>下载层设计思路，需要考虑的点</h4><p>首先需要一个manager管理整个app的下载事件；它负责管理每一个request。比如说取消、重新加载等操作。其次需要有一个Config配置了类，用来配置基础信息，比如配置请求类型、cookie、时间等信息。然后有一个对response进行处理的工具，比如日志的筛选打印、对一些异常错误的处理等等</p>
+<h4 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h4><p>模块化的优势：各模块直接代码和资源相互独立，模块可以独立维护、测试等。实现简单的插拔式。<br>文件夹隔离：将各模块的业务代码整理到相应的模块文件夹中，将各个模块用到的资源、宏也沉淀到基础库里。s<br>路由化：首先我们通过MGJRouter实现简单的路由化，尽可能地解耦各个模块。它是通过注册组件，通过URL调用页面，通过路由表的映射关系进行关联。<br>其次模块化：主要是有两个方式：<br>1、通过cocoapod的方案将各个主代码模块打包成pod包的形式。然后通过配置podsepc来进行模块以及库直接的依赖。但是会存在很大问题，一个主要 的是文件夹只有一层，没法做分级。2是库循环依赖问题。<br>2、使用cocoa touch framework。主要注意的点是混编时，对外的头文件，尤其是swift中使用到的OC头文件放到public中，因为framework不支持bridge；framework中的内核架构。</p>
+<h4 id="swift-amp-OC"><a href="#swift-amp-OC" class="headerlink" title="swift &amp; OC"></a>swift &amp; OC</h4><p>swift是解析型静态语言、OC是编译型动态语言；swift更注重安全性，是强类型语言；OC更注重灵活性；swift有函数式编程、面向对象、面向协议编程，OC只有面向对象编程；swift更注重值类型，OC更遵循指针和索引。<br>1、数据结构：</p>
+<ul>
+<li>swift将String、Array、Dictionary设计成值类型，OC是引用类型。相较而言，1)、值类型更高效使用内存，它是在栈上操作，引用类型在堆上操作；2)、通过let和var来确认String、Array、Dictionary是可变还是不可变，让线程更加安全；3)、也让String可以遵循Collection这种协议，增加了灵活性</li>
+<li>初始化的差别：swift的初始化更加严格准确，swift必须保证所有非optional的成员变量都完成初始化，同时新增convenience(便利初始化方法，必须通过调用同一个类中的designed初始化方法来完成)和required（强制子类重写父类所修饰的初始化方法）初始化方法</li>
+<li>swift的protocol协议更灵活，它可以对接口进行抽象，例如Sequence，配合extention、泛型、关联类型实现面向协议编程，同时它还可以用于值类型、如结构体和枚举<br>2、语言特性：<br>swift中，协议是动态派发，扩展是静态派发，也就是说如果协议中有方法声明，那么方法会根据对象的实际类型进行调用<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Chef</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeFood</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Chef</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeFood</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Make food"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SeafoodChef</span>:<span class="title">Chef</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeFood</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"cook seafood"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> oneC:<span class="type">Chef</span> = <span class="type">SeafoodChef</span>()</span><br><span class="line"><span class="keyword">let</span> twoC:<span class="type">SeafoodChef</span> = <span class="type">SeafoodChef</span>()</span><br><span class="line">oneC.makeFood()</span><br><span class="line">twoC.makeFood()</span><br><span class="line"><span class="comment">//这里oneC和twoC实际上都是SeafoodChef类型，按照上述原则，这里会打印两个"cook seafood"。假如protocol中没有声明makeFood()，那么第一行打印的就会是"Make food"，因为没有声明的话，只会按照声明类型进行静态派发，也就是说oneC被声明成了Chef类型，所以oneC会调用扩展中的实现。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Q1、类和结构体的区别：<br>类是引用类型，结构体是值类型。类可以继承、运行时类型转换、用deinit释放资源、可以被多次引用；Struts结构小，适用于复制操作，相较引用更安全，无须担心内存泄漏和多线程冲突问题。<br>Q2、weak和unowned的区别weak和unowned的区别QQ2：<br>当访问对象可能已经被释放时，使用weak，例如delegate；当访问对象确认不可能被释放时，则用unowned，比如self的引用；实际上，为了安全，基本上都是使用weak。<br>Q3、如何理解copy-on-write:<br>当值类型进行复制时，实际上复制的对象和原对象还是处于同一个内存中，当且仅当修改复制后的对象时，才会在内存中重新创建一个新对象。这样是内存使用更高效。<br>Q4、初始化方法对属性的设定以及willSet和didSet里对属性设定都不会触发属性观察。</p>
+<h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><h5 id="GCD"><a href="#GCD" class="headerlink" title="GCD:"></a>GCD:</h5><p>多核并行运算的解决方案，可以合理利用更多CPU内核。更主要的是自动管理线程的生命周期，只需要告诉GCD干什么就行。</p>
+<p>1、任务方面：同步Sync（执行完当前任务才会执行下一个任务）、异步Async（不需要等待当前任务执行完毕）；<br>队列相关：串行Serial（任务一个一个发出）、并行Concurrent（多个任务同时执行）；</p>
+<p>2、global_queue是一个并发队列，创建全局队列时，第一个参数是一个优先级的标识，所以如果要在并行队列中，让任务先执行，这可以通过设置这个优先级来达到目的（但是这里要注意，先执行并不一定是第一个执行完，它只能保证开始的执行顺序而已）。它的优先级包括（低-高：background（同步备份数据）、utility（需要时间的下载）、default、user-Initiated(用户出发的，如打开文件)、user-Interractive(用户交互，如主线程事件)）</p>
+<p>3、Dispatch_Barrier栅栏，实现多读单写<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">A</span>&#123;</span><br><span class="line">    <span class="keyword">set</span>&#123;</span><br><span class="line">        <span class="type">ConcurentQueue</span>.async(flogs:.barrier)&#123;</span><br><span class="line">            _a = newvalue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span>&#123;</span><br><span class="line">        <span class="type">ConcurentQueue</span>.sync&#123;</span><br><span class="line">            <span class="keyword">return</span> _a</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4、信号量：信号量可以改变全局队列里设置好的优先级。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> highQueue = <span class="type">Dispatch</span>.global(qos:.userInitiated)</span><br><span class="line"><span class="keyword">var</span> lowQueue = <span class="type">Dispatch</span>.global(qos:.utility)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> semaphore = <span class="type">DispatchSemaphore</span>(value:<span class="number">1</span>)</span><br><span class="line">lowQueue.asycn&#123;</span><br><span class="line">    semaphore.wait()</span><br><span class="line">    sleep(<span class="number">1000</span>)</span><br><span class="line">    semaphore,signal()</span><br><span class="line">&#125;</span><br><span class="line">highQueue.asycn&#123;</span><br><span class="line">    semaphore.wait()</span><br><span class="line">    sleep(<span class="number">1000</span>)</span><br><span class="line">    semaphore,signal()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里lowQueue的优先级更高。</span></span><br></pre></td></tr></table></figure></p>
+<p>5、死锁的几种情况<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、串行队列：异步里同步嵌套</span></span><br><span class="line"><span class="type">SerialQueue</span>.async&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="type">SerialQueue</span>.sync&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2、串行队列：同步里同步嵌套</span></span><br><span class="line"><span class="type">SerialQueue</span>.sync&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="type">SerialQueue</span>.sync&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//3、主线程中执行同步操作</span></span><br><span class="line">viewDidLoad()&#123;</span><br><span class="line">    <span class="type">DispatchQueue</span>.main.sync&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="number">3</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//4、NSOperation 线程间依赖</span></span><br><span class="line"><span class="keyword">let</span> operaA = <span class="type">Operation</span>()</span><br><span class="line"><span class="keyword">let</span> operaB = <span class="type">Operation</span>()</span><br><span class="line">operaA.addDependency(operaB)</span><br><span class="line">operaB.addDependency(operaA)</span><br></pre></td></tr></table></figure></p>
+<p>6、dispatch_group<br>dispatch_group_async里应该执行同步请求，如果执行异步请求，线程会立即返回，达不到想要的效果，所以要使用dispatch_group_enter(group)和dispatch_group_leave(group)来实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    dispatch_group_t group = dispatch_group_create()</span><br><span class="line">    </span><br><span class="line">    dispatch_group_enter(group)</span><br><span class="line">    self.request1(&#123;</span><br><span class="line">      sleep(1000)</span><br><span class="line">      dispatch_group_leave(group)</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    dispatch_group_enter(group)</span><br><span class="line">    self.request2(&#123;</span><br><span class="line">      sleep(1000)</span><br><span class="line">      dispatch_group_leave(group)</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    dispatch_group_notify(group,dispatch_get_main_queue(),^&#123;</span><br><span class="line">        print(finish)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="Operation："><a href="#Operation：" class="headerlink" title="Operation："></a>Operation：</h5><p>Operation是指一个单独的任务，然后把它放到OperationQueue中实现多线程运行效果，OperationQueue实现了暂停、继续、终止、优先顺序、依赖等操作。同时通过设置最大并发量maxConcurentOperationCount来确定其实串行还是并发。<br>Operation包含有常见4个状态：isReady(就绪)、Executing(运行中)、Cancelled(取消)、finished(完成)。<br>实现NSOperation可以通过它的子类NSIvocationOperation和NSBlockOperation，或者继承自NSOperation自定义。<br>1、Operation的取消操作，如果任务已经开始，那此时调用cancel是没有用的，所以得等任务结束之后判断是否isCancel来确定是否继续接下来的操作<br>2、依赖关系，如果存在相互依赖的环就会造成死锁<br>3、单纯的NSIvocationOperation和NSBlockOperation的start方法是同步执行的，要放到OperationQueue里才能实现异步执行<br>4、自定义Operation的时候，如果不重新它的状态方法，只重写main函数(执行体在main函数里)，则它的状态可以直接使用不需要代码控制，所以说也可以通过重写isReady、isCancelled、isFinish等方法来控制状态。<br>5、自定义Operation的时候，main函数里的执行体同样是同步执行的，那如果要异步请求一些操作，则应该和runloop结合起来使用<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CusOperation</span>:<span class="title">Operation</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> over:<span class="type">Bool</span> = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">override</span> main()&#123;</span><br><span class="line">        <span class="type">ConCurentQueue</span>.async&#123;</span><br><span class="line">            sleep(<span class="number">1000</span>)</span><br><span class="line">            <span class="keyword">self</span>.over = <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!<span class="keyword">self</span>.over &amp;&amp; !<span class="keyword">self</span>.isCancelled)&#123;</span><br><span class="line">            <span class="type">NSRunloop</span>.current.runmode(.<span class="keyword">default</span>,beforeDate:<span class="type">NSDate</span>.distanceFuture)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以总结一下：NSOperation较与GCD，就是可以添加依赖、最大并发量、控制状态。</p>
+<h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树:"></a>二叉树:</h4><p>前序、中序、后序遍历指的是根节点的位置。<br>中序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//中序，使用栈</span><br><span class="line">-(void)sourt1:(Node *)root&#123;</span><br><span class="line">   Node* p = root;</span><br><span class="line">   stack&lt;Node *&gt; s;</span><br><span class="line">   while(!s.empty() || p)&#123;</span><br><span class="line">       if(p)&#123; //先将左子树全部入栈</span><br><span class="line">           s.push(p);</span><br><span class="line">           p = p.leftchild;</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">           p = s.top();</span><br><span class="line">           s.pop();</span><br><span class="line">           print(p.value);//打印</span><br><span class="line">           p = p.rightChild; //进入右子数</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">//前序：也是使用栈</span><br><span class="line">-(void)sourt2:(Node *)root&#123;</span><br><span class="line">   Node* p = root;</span><br><span class="line">   stack&lt;Node *&gt; s;</span><br><span class="line">   while(!s.empty() || p)&#123;</span><br><span class="line">       if(p)&#123; //先将左子树全部入栈</span><br><span class="line">	       print(p.value);//打印</span><br><span class="line">           s.push(p);</span><br><span class="line">           p = p.leftchild;</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">           p = s.top;</span><br><span class="line">           s.pop();</span><br><span class="line">           p = p.rightChild; //进入右子数</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">//后序：也是使用栈。这个好难，先放弃吧</span><br></pre></td></tr></table></figure></p>
+<h4 id="响应链："><a href="#响应链：" class="headerlink" title="响应链："></a>响应链：</h4><p>1、当触摸事件发生后，系统会将该事件添加进UIApplication管理的队列事件中；<br>2、UIApplicatioA会从事件队列中取出该事件，并将事件分发给keywindow；<br>3、然后keywindow会判断hitTestwithEvent来返回最终响应的视图，那在这个过程中会调用pointInsert判断点击事件是否在当前视图的范围内，如果在，则会倒序遍历子视图，来判断是否是该视图响应事件。注意在pointInsertEvent内，需要使用convertpoint：toView：来进行坐标系转换</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/knoeledgePoints/" rel="tag"># knoeledgePoints</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/20/Flutter02/" rel="next" title="Flutter02">
+                <i class="fa fa-chevron-left"></i> Flutter02
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">FengCaifan</p>
+              <p class="site-description motion-element" itemprop="description">记录成长，记录生活</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#MVVM"><span class="nav-number">1.</span> <span class="nav-text">MVVM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络相关"><span class="nav-number">2.</span> <span class="nav-text">网络相关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP："><span class="nav-number">2.1.</span> <span class="nav-text">HTTP：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTPS"><span class="nav-number">2.2.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-UDP"><span class="nav-number">2.3.</span> <span class="nav-text">TCP/UDP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DNS解析："><span class="nav-number">2.4.</span> <span class="nav-text">DNS解析：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Session-Cookie"><span class="nav-number">2.5.</span> <span class="nav-text">Session/Cookie</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用三方库的实现原理和总结"><span class="nav-number">3.</span> <span class="nav-text">常用三方库的实现原理和总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AFNetworking"><span class="nav-number">3.1.</span> <span class="nav-text">AFNetworking</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Alamofire：同一个作者写的swift版本的AFNetWorking"><span class="nav-number">3.2.</span> <span class="nav-text">Alamofire：同一个作者写的swift版本的AFNetWorking</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SDWebImage："><span class="nav-number">3.3.</span> <span class="nav-text">SDWebImage：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AsyncDisplayKit："><span class="nav-number">3.4.</span> <span class="nav-text">AsyncDisplayKit：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Realm："><span class="nav-number">3.5.</span> <span class="nav-text">Realm：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#音视频上传下载（断点续传）"><span class="nav-number">4.</span> <span class="nav-text">音视频上传下载（断点续传）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#播放器"><span class="nav-number">5.</span> <span class="nav-text">播放器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#runtime-及其埋点和越界崩溃"><span class="nav-number">6.</span> <span class="nav-text">runtime 及其埋点和越界崩溃</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#埋点"><span class="nav-number">6.1.</span> <span class="nav-text">埋点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#越界崩溃"><span class="nav-number">6.2.</span> <span class="nav-text">越界崩溃</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#runloop、tableview卡顿"><span class="nav-number">7.</span> <span class="nav-text">runloop、tableview卡顿</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载层设计思路，需要考虑的点"><span class="nav-number">8.</span> <span class="nav-text">下载层设计思路，需要考虑的点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块化"><span class="nav-number">9.</span> <span class="nav-text">模块化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#swift-amp-OC"><span class="nav-number">10.</span> <span class="nav-text">swift &amp; OC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程"><span class="nav-number">11.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GCD"><span class="nav-number">11.1.</span> <span class="nav-text">GCD:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Operation："><span class="nav-number">11.2.</span> <span class="nav-text">Operation：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树"><span class="nav-number">12.</span> <span class="nav-text">二叉树:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应链："><span class="nav-number">13.</span> <span class="nav-text">响应链：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FengCaifan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

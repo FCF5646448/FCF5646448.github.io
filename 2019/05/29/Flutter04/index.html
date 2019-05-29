@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Flutter native,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Flutter框架简介及与原生交互实践">
+<meta name="keywords" content="Flutter native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter 学习04">
+<meta property="og:url" content="http://yoursite.com/2019/05/29/Flutter04/index.html">
+<meta property="og:site_name" content="FCF Home">
+<meta property="og:description" content="Flutter框架简介及与原生交互实践">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/05/29/Flutter04/FlutterFramework.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/29/Flutter04/webviewplatm.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/29/Flutter04/rnplatform.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/29/Flutter04/flutterplatform.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/29/Flutter04/Fluttercompile.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/29/Flutter04/Flutterruntime.jpg">
+<meta property="og:updated_time" content="2019-05-29T07:40:47.343Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flutter 学习04">
+<meta name="twitter:description" content="Flutter框架简介及与原生交互实践">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/29/Flutter04/FlutterFramework.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/29/Flutter04/">
+
+
+
+
+
+  <title>Flutter 学习04 | FCF Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FCF Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/Flutter04/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FengCaifan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FCF Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flutter 学习04</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-29T15:12:11+08:00">
+                2019-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter-混编/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter 混编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Flutter框架简介及与原生交互实践
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Flutter-框架简介："><a href="#Flutter-框架简介：" class="headerlink" title="Flutter 框架简介："></a>Flutter 框架简介：</h4><p><img src="/2019/05/29/Flutter04/FlutterFramework.jpg" alt="img"></p>
+<p>上图，是Flutter的整体框架，我们可以看出Flutter的整体框架是有三部分组成：</p>
+<ul>
+<li>Framework：最上层是Flutter提供的两种风格的Widget(Material和Cupertino)，往下是Widget层；接着是渲染、动画、手势等。</li>
+<li>Engine：主要是给Framework层提供支持，包括Skia(二维图形库)、Dart（Dart runtime,GC垃圾回收等）、Text（文本渲染）。</li>
+<li>Embedder：嵌入层，即把Flutter嵌入到各个平台上去。<br>从这些层级其实也可以看出，<strong>Flutter的平台相关性很低，平台只提供画布，剩余所有的渲染相关都在Flutter内部，所以它天生就有很好的跨平台特性</strong>。<ul>
+<li>Widget：类似于iOS的UIView的作用，Flutter几乎所有对象都是Widget，它实际上也不是真正显示在屏幕上的元素，而只是“描述UI元素额配置数据”，真正显示屏幕的元素是Element。具体可以查看 <a href="https://fcf5646448.github.io/2019/02/20/Flutter02/" target="_blank" rel="noopener">我的blog</a></li>
+<li>Flutter的大致渲染流程：当UI需要更新时，Framework会通知Engine，Engine会等到下一个VSync信号到达时，通知Framework，然后Framework会进行对应的animations、build、layout、compositing、paint,最后生成layer提交给Engine。Engine会把layer进行组合，生成纹理，最后通过OpenGL接口提交给GPU，GPU经过处理后在显示器上显示出来。</li>
+</ul>
+</li>
+</ul>
+<p>此时，我们来对比一下近些年出现的跨平台方案：</p>
+<ul>
+<li><p>webview：WebView的优点就是可以完全继承现代web开发的成果(丰富的控件、各种页面框架、动态化)。但是WebView有一个致命的缺点就是它的渲染效率和JavaScript的执行性能问题。加上各个系统版本和设备厂商的订制，很难保证在所有设备上能够提供一致的体验；<br><img src="/2019/05/29/Flutter04/webviewplatm.jpg" alt="img"></p>
+</li>
+<li><p>React Native：为了解决WebView的渲染性能问题，RN将最终的渲染工作交还给了系统。虽然同样使用HTML+JS的UI构建逻辑，但是最终会生成对应的自定义原生控件，以充分利用原生控件对WebView的较高的绘制效率。但是这种策略也将框架本身与APP开发者绑在了系统的控件上，不仅框架本身需要处理大量平台相关逻辑，开发过程中也要处理不同平台的差异。另外JavaScript访问Native必须通过Bridge，访问频率非常高(尤其是动画或者滚动时，每秒可达60次)。因此也可能导致性能问题。<br><img src="/2019/05/29/Flutter04/rnplatform.jpg" alt="img"></p>
+</li>
+<li><p>Flutter：Flutter则使用编译的编程语言Dart来避免Bridge引起的性能问题。Dart被提前编译成多个平台的本地代码。如上文所述，它将Widget和渲染器从平台移到应用程序中，从而使其可以自定义和扩展。Flutter对平台的需求只是一个画布，Widget可以呈现在设备屏幕上，并可以访问事件(触摸、定时器)和服务(位置、摄像机等)<br>  <img src="/2019/05/29/Flutter04/flutterplatform.jpg" alt="img"></p>
+</li>
+</ul>
+<h4 id="Flutter与iOS原生混合编程"><a href="#Flutter与iOS原生混合编程" class="headerlink" title="Flutter与iOS原生混合编程"></a>Flutter与iOS原生混合编程</h4><p>在整合进混编项目之前，先来理解一下Flutter的编译和运行流程(主要讲release模式下)。</p>
+<h5 id="Flutter编译流程"><a href="#Flutter编译流程" class="headerlink" title="Flutter编译流程"></a>Flutter编译流程</h5><p><img src="/2019/05/29/Flutter04/Fluttercompile.jpg" alt="img"><br>大致流程就是所有的Dart代码通过gen_snaphot生成了汇编形式的机器代码，然后再通过xcrun的编译工具链生成最终的App.framework。同时呢，Engine和Embedder部分会通过Ninja构建成Flutter.framwork。</p>
+<h5 id="Flutter运行流程"><a href="#Flutter运行流程" class="headerlink" title="Flutter运行流程"></a>Flutter运行流程</h5><p><img src="/2019/05/29/Flutter04/Flutterruntime.jpg" alt="img"></p>
+<h5 id="原生项目中使用cocoapod集成Flutter。"><a href="#原生项目中使用cocoapod集成Flutter。" class="headerlink" title="原生项目中使用cocoapod集成Flutter。"></a>原生项目中使用cocoapod集成Flutter。</h5><p>从上文可以看到Flutter编译完成后是一个Framework，所以在原生框架中使用的话，也是只需使用它的Framework就好了。<br>大概流程步骤：</p>
+<ul>
+<li><p>1、通过cocoapod，导入已经存在的Flutter module</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 这里写你的flutter module相对路径</span><br><span class="line">flutter_application_path = &apos;../flutter_module/&apos;</span><br><span class="line">target &apos;FluNative&apos; do</span><br><span class="line"># Comment the next line if you&apos;re not using Swift and don&apos;t want to use dynamic frameworks</span><br><span class="line">use_frameworks!</span><br><span class="line">  </span><br><span class="line"># Pods for FluNative</span><br><span class="line">eval(File.read(File.join(flutter_application_path, &apos;.ios&apos;, &apos;Flutter&apos;, &apos;podhelper.rb&apos;)),binding)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2、添加脚本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 删除本地Flutter文件夹</span><br><span class="line">rm -rf -- <span class="string">"$SOURCE_ROOT/Flutter"</span></span><br><span class="line"># 再生成Flutter文件夹</span><br><span class="line">mkdir -p <span class="string">"$SOURCE_ROOT/Flutter"</span></span><br><span class="line"># 编译生成</span><br><span class="line"><span class="string">"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh"</span> 	build</span><br><span class="line"># 将胶水文件copy到本地文件夹</span><br><span class="line">cp -r -- <span class="string">"$FLUTTER_APPLICATION_PATH/.ios/Flutter/flutter_assets"</span> <span class="string">"​$SOURCE_ROOT/Flutter"</span></span><br><span class="line">cp -r -- <span class="string">"$FLUTTER_APPLICATION_PATH/.ios/Flutter/App.framework"</span> <span class="string">"​$SOURCE_ROOT/Flutter"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、common + B build之后，会在项目文件夹下生成一个Flutter的文件夹，里面放置的是上文说到的 App.framework。将其add进来就可以使用了。</p>
+</li>
+<li><p>4、修改Appdelegate</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> Flutter</span><br><span class="line"><span class="meta">@UIApplicationMain</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">FlutterAppDelegate</span> </span>&#123;</span><br><span class="line">   <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: <span class="keyword">Any</span>]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.application(application, didFinishLaunchingWithOptions: launchOptions)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>5、使用</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">pushFlutterAction</span><span class="params">(<span class="number">_</span> sender: <span class="keyword">Any</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">let</span> vc = <span class="type">FlutterViewController</span>() </span><br><span class="line">	<span class="keyword">self</span>.navigationController?.pushViewController(vc, animated: <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="Flutter与原生通信"><a href="#Flutter与原生通信" class="headerlink" title="Flutter与原生通信"></a>Flutter与原生通信</h5><p>Flutter提供了一个Platform Channel机制，让消息能够在native与Flutter之间进行传递。<br>BasicMessageChannel：用于传递基础数据<br>MethodChannel：Flutter调用native侧功能<br>EventChannel：native调用Flutter功能<br>大概的流程就是：首先初始化一个桥接，传入桥接名和处理消息发送接收的类（但是其实最终响应的类可以根据路由订制）。然后通过一个MessageHandle监听消息回调，同时可以向flutter侧回传执行结果。</p>
+<p>Native侧：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flutter = <span class="type">FlutterViewController</span>()</span><br><span class="line">        flutter.hidesBottomBarWhenPushed = <span class="literal">true</span></span><br><span class="line">        </span><br><span class="line">        flutter.setInitialRoute(<span class="string">"myApp"</span>)</span><br><span class="line">        <span class="keyword">let</span> methodChannel:<span class="type">FlutterMethodChannel</span> = <span class="type">FlutterMethodChannel</span>(name: <span class="string">"com.pages.your/native_get"</span>, binaryMessenger: flutter)</span><br><span class="line">        </span><br><span class="line">        methodChannel.setMethodCallHandler &#123;[<span class="keyword">weak</span> <span class="keyword">self</span>] (call, result) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> `<span class="keyword">self</span>` = <span class="keyword">self</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">             *</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"method:\(call.method);narguments:\(String(describing: call.arguments))"</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> <span class="string">"iOSFlutter"</span> == call.method &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">let</span> target = <span class="type">TargetViewController</span>()</span><br><span class="line">                <span class="keyword">self</span>.navigationController?.pushViewController(target, animated: <span class="literal">true</span>)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> <span class="string">"iOSFlutter1"</span> == call.method &#123;</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> dic = call.arguments <span class="keyword">as</span>? [<span class="type">NSString</span>:<span class="type">Any</span>] &#123;</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"code:\(dic["</span>code<span class="string">"] ?? "</span>-<span class="number">1</span><span class="string">")"</span>)</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"data:\(dic["</span>data<span class="string">"] ?? "</span>-<span class="number">1</span><span class="string">")"</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> <span class="string">"iOSFlutter2"</span> == call.method &#123;</span><br><span class="line">                <span class="keyword">let</span> batterylevel = <span class="keyword">self</span>.getBatteryLevel()</span><br><span class="line">                <span class="keyword">if</span> batterylevel == -<span class="number">1</span> &#123;</span><br><span class="line">                    result(<span class="type">FlutterError</span>(code: <span class="string">"UNAvailable"</span>, message: <span class="string">"battery info unavailabel"</span>, details: <span class="literal">nil</span>))</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    result(<span class="string">"\(batterylevel)"</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>Flutter侧：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyHomePage</span>&gt; </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> methodChannel = <span class="keyword">const</span> MethodChannel(<span class="string">'com.pages.your/native_get'</span>);</span><br><span class="line"></span><br><span class="line">  _iOSPushToVC() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> methodChannel.invokeMethod(<span class="string">'iOSFlutter'</span>, <span class="string">'参数'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _iOSPushToVC1() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="keyword">dynamic</span>&gt; map = &#123;<span class="string">"code"</span>: <span class="string">"200"</span>, <span class="string">"data"</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]&#125;;</span><br><span class="line">    <span class="keyword">await</span> methodChannel.invokeMethod(<span class="string">'iOSFlutter1'</span>, map);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _iOSPushToVC2() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">dynamic</span> result;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      result = <span class="keyword">await</span> methodChannel.invokeMethod(<span class="string">'iOSFlutter2'</span>);</span><br><span class="line">    &#125; on PlatformException &#123;</span><br><span class="line">      result = <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (result <span class="keyword">is</span> <span class="built_in">String</span>) &#123;</span><br><span class="line">      <span class="built_in">print</span>(result);</span><br><span class="line">      showModalBottomSheet(context: context, builder: (BuildContext context) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Container(</span><br><span class="line">          child: <span class="keyword">new</span> Center(</span><br><span class="line">            child: <span class="keyword">new</span> Text(result, style: <span class="keyword">new</span> TextStyle(color: Colors.brown), textAlign: TextAlign.center,),</span><br><span class="line">          ),</span><br><span class="line">          height: <span class="number">40.0</span>,</span><br><span class="line">        );</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            <span class="keyword">new</span> FlatButton(onPressed: ()&#123;</span><br><span class="line">              _iOSPushToVC();</span><br><span class="line">            &#125;, child: <span class="keyword">new</span> Text(<span class="string">"跳转iOS新界面，参数是字符串"</span>)),</span><br><span class="line">            <span class="keyword">new</span> FlatButton(onPressed: ()&#123;</span><br><span class="line">              _iOSPushToVC1();</span><br><span class="line">            &#125;, child: Text(<span class="string">'传参，参数是map，看log'</span>)),</span><br><span class="line">            <span class="keyword">new</span> FlatButton(onPressed: () &#123;</span><br><span class="line">              _iOSPushToVC2();</span><br><span class="line">            &#125;, child: <span class="keyword">new</span> Text(<span class="string">"接收客户端相关内容"</span>)),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flutter-native/" rel="tag"># Flutter native</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/20/knowledgePoints01/" rel="next" title="iOS-知识小集01">
+                <i class="fa fa-chevron-left"></i> iOS-知识小集01
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">FengCaifan</p>
+              <p class="site-description motion-element" itemprop="description">记录成长，记录生活</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Flutter-框架简介："><span class="nav-number">1.</span> <span class="nav-text">Flutter 框架简介：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flutter与iOS原生混合编程"><span class="nav-number">2.</span> <span class="nav-text">Flutter与iOS原生混合编程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Flutter编译流程"><span class="nav-number">2.1.</span> <span class="nav-text">Flutter编译流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Flutter运行流程"><span class="nav-number">2.2.</span> <span class="nav-text">Flutter运行流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原生项目中使用cocoapod集成Flutter。"><span class="nav-number">2.3.</span> <span class="nav-text">原生项目中使用cocoapod集成Flutter。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Flutter与原生通信"><span class="nav-number">2.4.</span> <span class="nav-text">Flutter与原生通信</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FengCaifan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
